@@ -41,11 +41,18 @@ function setUser(username) {
 }
   
 function getUser() {
-return localStorage.getItem(USER_KEY);
+    return localStorage.getItem(USER_KEY);
 }
   
 function removeUser() {
-localStorage.removeItem(USER_KEY);
+    localStorage.removeItem(USER_KEY);
+}
+
+function createUser(newUsername, newPassword) {
+    const users = JSON.parse(localStorage.getItem(USERS_KEY));
+    const newUser = {username: newUsername, password: newPassword};
+    users.push(newUser);
+    localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
 
 export {
@@ -53,7 +60,8 @@ export {
     getUser,
     removeUser,
     initUsers,
-    verifyUser
+    verifyUser,
+    createUser
 }
 
 //[{"username":"mbolger","password":"abc123"},{"username":"shekhar","password":"def456"}]
