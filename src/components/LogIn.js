@@ -1,8 +1,9 @@
-function LogIn() {
+import { setUser, verifyUser, initUsers } from "../data/repository";
+function LogIn(props) {
     var username = null;
     var password = null;
 
-    function setUsername(newUsername) {
+    function setUsernameInput(newUsername) {
         username = newUsername;
     }
 
@@ -11,9 +12,14 @@ function LogIn() {
     }
 
     function logIn() {
-        var msg = username + " " + password;
-        alert(msg);
-        
+        if(verifyUser(username, password)) {
+            initUsers();
+            props.loginUser(username);
+            setUser(username);
+        // Navigate to the home page.
+            props.history.push("/");
+            return;
+        }
     }
     
     return (
@@ -22,7 +28,7 @@ function LogIn() {
             <form>
                 <div className="form-group">
                     <label htmlFor="username">Username</label>
-                    <input type="text" className="form-control" id="username" placeholder="Enter username" onChange={e => setUsername(e.target.value)}></input>
+                    <input type="text" className="form-control" id="username" placeholder="Enter username" onChange={e => setUsernameInput(e.target.value)}></input>
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>

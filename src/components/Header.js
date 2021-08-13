@@ -1,6 +1,8 @@
+import React from "react";
 import logo from '../img/ticks.svg'
+import account from '../img/account.svg'
 
-function Header() {
+function Header(props) {
     return (
       <div className="d-flex justify-content-between align-items-center p-3">
           <a className="ml-3 text-decoration-none" href="/">
@@ -10,8 +12,17 @@ function Header() {
             </div>
           </a>
           <div>
-            <a href="/login"><button type="button" class="btn btn-outline-primary">Log in</button></a>
-            <a className="ml-3" href="/sign-up"><button type="button" class="btn btn-primary">Sign up</button></a>
+            {props.username === null
+                ?
+                  <a href="/login"><button type="button" class="btn btn-outline-primary">Log in</button></a>
+                  //<a className="ml-3" href="/sign-up"><button type="button" class="btn btn-primary">Sign up</button></a>
+                  //<a className="ml-3" href="/sign-up"><button type="button" class="btn btn-primary">My Profile</button></a>
+                :
+                <>
+                  <a href="/sign-up"><img src={account} className="logo mr-2"></img></a>
+                  <a href="/"><button type="button" class="btn btn-primary" onClick={props.logoutUser}>Log out</button></a>
+                </>
+              }
           </div>
       </div>
     );
