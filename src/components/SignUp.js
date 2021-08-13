@@ -19,7 +19,7 @@ function SignUp() {
                     <label htmlFor="confirm-password">Password</label>
                     <input type="password" className="form-control" id="confirm-password" placeholder="Confirm password"></input>
                 </div>
-                <button type="submit" class="btn btn-primary m-auto">SUBMIT</button>
+                <button type="submit" class="btn btn-primary m-auto">SIGN UP</button>
             </form>
         </div>
       
