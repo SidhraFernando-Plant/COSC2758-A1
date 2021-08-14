@@ -1,6 +1,6 @@
 function Footer() {
     return (
-      <div className="bg-light">
+      <div className="bg-light footer">
         <hr></hr>
         <div className="d-flex justify-content-center">
           <p className="p-3">Ⓒ 2021 Sidhra Fernando-Plant</p>

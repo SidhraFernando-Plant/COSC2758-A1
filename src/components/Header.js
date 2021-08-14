@@ -19,7 +19,7 @@ function Header(props) {
                   //<a className="ml-3" href="/sign-up"><button type="button" class="btn btn-primary">My Profile</button></a>
                 :
                 <>
-                  <a href="/sign-up"><img src={account} className="logo mr-2"></img></a>
+                  <a href="/profile"><img src={account} className="logo mr-2"></img></a>
                   <a href="/"><button type="button" class="btn btn-primary" onClick={props.logoutUser}>Log out</button></a>
                 </>
               }

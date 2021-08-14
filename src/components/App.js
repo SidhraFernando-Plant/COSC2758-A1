@@ -6,6 +6,7 @@ import Home from './Home'
 import Footer from './Footer'
 import SignUp from './SignUp'
 import LogIn from './LogIn'
+import MyProfile from './MyProfile'
 import { useState } from 'react';
 import { getUser, removeUser } from "../data/repository";
 
@@ -33,8 +34,11 @@ function App() {
                 <LogIn {...props} loginUser={loginUser} />
               )} />
             </Route>
+            <Route path="/profile">
+              <MyProfile username={username}/>
+            </Route>
             <Route path="/sign-up">
-              <SignUp />
+              <SignUp/>
             </Route>
             <Route path="/">
               <Home username={username}/>

@@ -65,6 +65,23 @@
   width: 10%;
 }
 
+.profile-details {
+  width: 20%;
+  height: 210px;
+  padding: 30px;
+  margin: auto;
+}
+
+.avatar {
+  width: 80px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
 
 
 
