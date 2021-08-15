@@ -1,8 +1,20 @@
 import avatar from '../img/avatar.svg'
+import edit from '../img/edit.svg'
+import trash from '../img/delete.svg'
 function MyProfile(props) {
+    function deleteProfile() {
+        alert('deleting');
+    }
+    function editProfile() {
+        alert('editing');
+    }
     return (
     <div>
-      <h2 className="text-center">{props.username}'s profile</h2>
+      <div className="d-flex align-items-center justify-content-center">
+        <h2 className="m-0 mr-2">{props.username}'s profile</h2>
+        <img src={edit} className="profile-actions" onClick={editProfile}></img>
+        <img src={trash} className="profile-actions" onClick={deleteProfile}></img>
+      </div>
       <div className="profile-details d-flex flex-column bg-light rounded mt-3 border justify-content-between">
         <div className="d-flex align-items-center">
             <img src={avatar} className="avatar"></img>
