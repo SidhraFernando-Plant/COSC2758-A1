@@ -1,9 +1,15 @@
 import avatar from '../img/avatar.svg'
 import edit from '../img/edit.svg'
 import trash from '../img/delete.svg'
+import {deleteUser} from "../data/repository";
 function MyProfile(props) {
     function deleteProfile() {
-        alert('deleting');
+        //change to better alert
+        //if(window.confirm('Are you sure you want to delete your account?')) {
+            deleteUser(props.username);
+            props.logoutUser();
+            props.history.push("/");
+        //}
     }
     function editProfile() {
         alert('editing');

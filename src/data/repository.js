@@ -86,6 +86,20 @@ function removeUser() {
     localStorage.removeItem(DATE_KEY);
 }
 
+function deleteUser(username) {
+    const users = JSON.parse(localStorage.getItem(USERS_KEY));
+    for(var i=0;i<users.length;i++) {
+      
+      if(username===users[i].username) {
+        alert("account found at position" + i)
+          users.splice(i, i+1);
+          localStorage.setItem(USERS_KEY, JSON.stringify(users));
+          return;
+      }
+    }
+    
+}
+
 function createUser(newUsername, newPassword, newEmail, date) {
     const users = JSON.parse(localStorage.getItem(USERS_KEY));
     const newUser = {username: newUsername, password: newPassword, email: newEmail, dateJoined: date};
@@ -103,7 +117,8 @@ export {
     getEmail,
     getEmailByUsername,
     getDateJoined,
-    getDateByUsername
+    getDateByUsername,
+    deleteUser
 }
 
 //[{"username":"mbolger","password":"abc123"},{"username":"shekhar","password":"def456"}]

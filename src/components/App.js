@@ -35,14 +35,16 @@ function App() {
         <Header username={username} logoutUser={logoutUser}/>
         <main role="main">
           <Switch>
-            <Route path="/login">
+            
             <Route path="/login" render={props => (
-                <LogIn {...props} loginUser={loginUser} />
+              <LogIn {...props} loginUser={loginUser} />
               )} />
-            </Route>
-            <Route path="/profile">
-              <MyProfile username={username} email={email} dateJoined={dateJoined}/>
-            </Route>
+            
+            <Route path="/profile" render={props => (
+              <MyProfile {...props} username={username} email={email} dateJoined={dateJoined} logoutUser={logoutUser}/>
+            )} />
+              
+            
             <Route path="/sign-up">
               <SignUp/>
             </Route>
