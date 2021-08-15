@@ -1,4 +1,4 @@
-import { setUser, verifyUser, initUsers } from "../data/repository";
+import { setUser, verifyUser, initUsers, getEmailByUsername, getDateByUsername } from "../data/repository";
 function LogIn(props) {
     var username = null;
     var password = null;
@@ -12,10 +12,12 @@ function LogIn(props) {
     }
 
     function logIn() {
+        initUsers();
         if(verifyUser(username, password)) {
-            initUsers();
-            props.loginUser(username);
-            setUser(username);
+            var email = getEmailByUsername(username);
+            var date = getDateByUsername(username);
+            props.loginUser(username, email, date);
+            setUser(username, email, date);
         // Navigate to the home page.
             props.history.push("/");
             return;

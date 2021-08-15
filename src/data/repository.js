@@ -1,5 +1,7 @@
 const USERS_KEY = "users";
 const USER_KEY = "user";
+const EMAIL_KEY = "email";
+const DATE_KEY = "dateJoined";
 
 function initUsers() {
     // Stop if data is already initialised.
@@ -18,7 +20,9 @@ function initUsers() {
       },
       {
         username: "a",
-        password: "b"
+        password: "b",
+        email: "sidhrafp@gmail.com",
+        dateJoined: "2022-07-26"
       }
     ];
   
@@ -36,16 +40,50 @@ function verifyUser(username, password) {
     return false;
 }
 
-function setUser(username) {
+function setUser(username, email, date) {
     localStorage.setItem(USER_KEY, username);
+    localStorage.setItem(EMAIL_KEY, email);
+    localStorage.setItem(DATE_KEY, date);
 }
   
 function getUser() {
     return localStorage.getItem(USER_KEY);
 }
+
+function getEmail() {
+    return localStorage.getItem(EMAIL_KEY);
+}
+
+function getDateJoined() {
+  return localStorage.getItem(DATE_KEY);
+}
+
+//CHANGE THIS
+function getEmailByUsername(username) {
+  const users = JSON.parse(localStorage.getItem(USERS_KEY));
+  for(const user of users) {
+      if(username===user.username) {
+          return user.email;
+      }
+  }
+  return null;
+}
+
+//CHANGE THIS
+function getDateByUsername(username) {
+  const users = JSON.parse(localStorage.getItem(USERS_KEY));
+  for(const user of users) {
+      if(username===user.username) {
+          return user.dateJoined;
+      }
+  }
+  return null;
+}
   
 function removeUser() {
     localStorage.removeItem(USER_KEY);
+    localStorage.removeItem(EMAIL_KEY);
+    localStorage.removeItem(DATE_KEY);
 }
 
 function createUser(newUsername, newPassword) {
@@ -61,7 +99,11 @@ export {
     removeUser,
     initUsers,
     verifyUser,
-    createUser
+    createUser,
+    getEmail,
+    getEmailByUsername,
+    getDateJoined,
+    getDateByUsername
 }
 
 //[{"username":"mbolger","password":"abc123"},{"username":"shekhar","password":"def456"}]

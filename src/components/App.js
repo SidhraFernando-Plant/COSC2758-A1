@@ -8,19 +8,25 @@ import SignUp from './SignUp'
 import LogIn from './LogIn'
 import MyProfile from './MyProfile'
 import { useState } from 'react';
-import { getUser, removeUser } from "../data/repository";
+import { getEmail, getUser, removeUser, getDateJoined } from "../data/repository";
 
 
 function App() {
   const [username, setUsername] = useState(getUser());
+  const [email, setEmail] = useState(getEmail());
+  const [dateJoined, setDateJoined] = useState(getDateJoined());
 
-  const loginUser = (username) => {
+  const loginUser = (username, email, dateJoined) => {
     setUsername(username);
+    setEmail(email);
+    setDateJoined(dateJoined);
   }
 
   const logoutUser = () => {
     removeUser();
     setUsername(null);
+    setEmail(null);
+    setDateJoined(null);
   }
   
   return (
@@ -35,7 +41,7 @@ function App() {
               )} />
             </Route>
             <Route path="/profile">
-              <MyProfile username={username}/>
+              <MyProfile username={username} email={email} dateJoined={dateJoined}/>
             </Route>
             <Route path="/sign-up">
               <SignUp/>
