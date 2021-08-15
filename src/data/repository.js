@@ -86,9 +86,9 @@ function removeUser() {
     localStorage.removeItem(DATE_KEY);
 }
 
-function createUser(newUsername, newPassword) {
+function createUser(newUsername, newPassword, newEmail, date) {
     const users = JSON.parse(localStorage.getItem(USERS_KEY));
-    const newUser = {username: newUsername, password: newPassword};
+    const newUser = {username: newUsername, password: newPassword, email: newEmail, dateJoined: date};
     users.push(newUser);
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }

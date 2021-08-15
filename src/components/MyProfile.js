@@ -8,8 +8,8 @@ function MyProfile(props) {
             <img src={avatar} className="avatar"></img>
             <h2 className="ml-2">{props.username}</h2>
         </div>
-        <span className="ml-2">{props.email}</span>
-        <span className="ml-2">{props.dateJoined}</span>
+        <span className="ml-2">Email: {props.email}</span>
+        <span className="ml-2">Joined on: {props.dateJoined}</span>
       </div>
     </div>
     );

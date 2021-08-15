@@ -24,7 +24,9 @@ function SignUp() {
     function signUp() {
         //e.preventDefault();
         if(username!==null&&email!==null&&password!==null&&confirmPassword!==null) {
-            createUser(username, password);
+            var today = new Date();
+            today = today.toDateString();
+            createUser(username, password, email, today);
         }
         else {
             alert("Fields empty")
