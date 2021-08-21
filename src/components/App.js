@@ -41,7 +41,7 @@ function App() {
               )} />
             
             <Route path="/profile" render={props => (
-              <MyProfile {...props} username={username} email={email} dateJoined={dateJoined} logoutUser={logoutUser}/>
+              <MyProfile {...props} username={username} email={email} dateJoined={dateJoined} logoutUser={logoutUser} loginUser={loginUser}/>
             )} />
               
             
