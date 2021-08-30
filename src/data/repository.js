@@ -5,6 +5,7 @@ const DATE_KEY = "dateJoined";
 const POST_TEXT_KEY = "text";
 const POST_ID_KEY = "postId";
 const POSTS_KEY = "posts";
+const DEFAULT_AVATAR_PATH = "../img/avatar.svg";
 
 function initUsers() {
     // Stop if data is already initialised.
@@ -115,9 +116,31 @@ function editUser(oldUsername, newUsername, email) {
 
 function createUser(newUsername, newPassword, newEmail, date) {
     const users = JSON.parse(localStorage.getItem(USERS_KEY));
-    const newUser = {username: newUsername, password: newPassword, email: newEmail, dateJoined: date};
+    const newUser = {username: newUsername, password: newPassword, email: newEmail, dateJoined: date, avatar: ""};
     users.push(newUser);
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
+}
+
+function setAvatar(username, imgBlob) {
+  const users = JSON.parse(localStorage.getItem(USERS_KEY));
+  for(const user of users) {
+    if(username===user.username) {
+        user.avatar = imgBlob;
+        localStorage.setItem(USERS_KEY, JSON.stringify(users));
+        return;
+    }
+  }
+}
+
+function getAvatar(username) {
+  const users = JSON.parse(localStorage.getItem(USERS_KEY));
+  for(const user of users) {
+    if(username===user.username) {
+        var imgBlob = user.avatar;
+        return imgBlob;
+    }
+  }
+  return "";
 }
 
 //----------POSTS--------------
@@ -232,7 +255,9 @@ export {
     editPost,
     getReplies,
     createReply,
-    getPostById
+    getPostById,
+    setAvatar,
+    getAvatar
 }
 
 //[{"username":"mbolger","password":"abc123"},{"username":"shekhar","password":"def456"}]

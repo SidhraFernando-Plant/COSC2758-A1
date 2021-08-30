@@ -67,7 +67,7 @@
 
 .profile-details {
   width: 334px;
-  height: 210px;
+  height: 260px;
   padding: 30px;
   margin: auto;
 }
@@ -86,6 +86,21 @@
   width: 35px;
 }
 
+.post-button {
+  width: 94px;
+}
+
+.card {
+  width: 18rem;
+}
+
+.card-new-post {
+  width: 50rem;
+}
+
+.bold {
+  font-weight: bold;
+}
 
 
 
