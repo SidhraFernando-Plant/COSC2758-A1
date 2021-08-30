@@ -7,8 +7,11 @@ import Footer from './Footer'
 import SignUp from './SignUp'
 import LogIn from './LogIn'
 import MyProfile from './MyProfile'
+import Posts from './Posts'
+import PostInspect from './PostInspect'
 import { useState } from 'react';
 import { getEmail, getUser, removeUser, getDateJoined } from "../data/repository";
+import ImageUpload from './ImageUpload';
 
 
 function App() {
@@ -43,17 +46,25 @@ function App() {
             <Route path="/profile" render={props => (
               <MyProfile {...props} username={username} email={email} dateJoined={dateJoined} logoutUser={logoutUser} loginUser={loginUser}/>
             )} />
-              
-            
+            <Route path="/posts">
+              <Posts username={username}/>
+            </Route>
             <Route path="/sign-up">
               <SignUp/>
+            </Route>
+            <Route  path="/view-post/:id">
+              <PostInspect username={username}/>
+            </Route>
+            <Route path="/upload-image">
+              <ImageUpload/>
             </Route>
             <Route path="/">
               <Home username={username}/>
             </Route>
           </Switch>
         </main>
-        <Footer />
+        {//<Footer /> make it stick to bottom better
+        }
       </Router>
     </div>
   );
