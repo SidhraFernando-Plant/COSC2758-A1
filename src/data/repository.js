@@ -2,6 +2,9 @@ const USERS_KEY = "users";
 const USER_KEY = "user";
 const EMAIL_KEY = "email";
 const DATE_KEY = "dateJoined";
+const POST_TEXT_KEY = "text";
+const POST_ID_KEY = "postId";
+const POSTS_KEY = "posts";
 
 function initUsers() {
     // Stop if data is already initialised.
@@ -117,6 +120,98 @@ function createUser(newUsername, newPassword, newEmail, date) {
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
 
+//----------POSTS--------------
+
+//Maybe put this in a separate file
+function createPost(newPost, username, postDate) {
+  const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
+  var newId = parseInt(localStorage.getItem(POST_ID_KEY));
+  var thisPost = {post : newPost, user: username, date: postDate, id: newId, replies:[]};
+  posts.unshift(thisPost);
+  localStorage.setItem(POSTS_KEY, JSON.stringify(posts))
+  localStorage.setItem(POST_ID_KEY, newId+1);
+}
+
+function getPosts() {
+  const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
+  if(posts.length==0) {
+    return null;
+  }
+  return posts;
+}
+
+function getPostsByUser(user) {
+  const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
+  if(posts.length==0) {
+    return null;
+  }
+  var filteredPosts = [];
+  for(const post of posts) {
+    //alert(post.USER_KEY);
+    if(user===post.user) {
+        
+        filteredPosts.push(post);
+    }
+  }
+  return filteredPosts;
+}
+
+function getPostById(postId) {
+  const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
+  for(const post of posts) {
+    if(postId===post.id) {
+        return post;
+    }
+  }
+}
+
+function deletePost(postId) {
+  const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
+  for(var i=0;i<posts.length;i++) {
+    if(postId===posts[i].id) {
+        posts.splice(i, i+1);
+        localStorage.setItem(POSTS_KEY, JSON.stringify(posts));
+        return;
+    }
+  }
+}
+
+function editPost(postId, newText) {
+    const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
+    for(const post of posts) {
+      if(postId===post.id) {
+          post.post=newText;
+          localStorage.setItem(POSTS_KEY, JSON.stringify(posts));
+          return;
+      }
+    }
+}
+
+function createReply(newReply, username, replyDate, postId) {
+  const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
+  var repliedPost;
+  for(const post of posts) {
+    if(parseInt(postId)==parseInt(post.id)) {
+        //var replies = post.replies;
+        var thisReply = {replyText : newReply, user: username, date: replyDate};
+        post.replies.unshift(thisReply);
+        localStorage.setItem(POSTS_KEY, JSON.stringify(posts));
+        return;
+    }
+  }
+}
+
+function getReplies(postId) {
+  const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
+  var repliedPost;
+  for(const post of posts) {
+    if(postId===post.id) {
+        //var replies = post.replies;
+        return post.replies;
+    }
+  }
+}
+
 export {
     setUser,
     getUser,
@@ -129,7 +224,15 @@ export {
     getDateJoined,
     getDateByUsername,
     deleteUser,
-    editUser
+    editUser,
+    createPost,
+    getPosts,
+    getPostsByUser,
+    deletePost,
+    editPost,
+    getReplies,
+    createReply,
+    getPostById
 }
 
 //[{"username":"mbolger","password":"abc123"},{"username":"shekhar","password":"def456"}]
