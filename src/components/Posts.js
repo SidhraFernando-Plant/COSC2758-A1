@@ -1,8 +1,9 @@
-import {createPost, getPosts, getPostsByUser} from "../data/repository"
+import {createPost, getPosts, getPostsByUser, getAvatar} from "../data/repository"
 import PostPreview from './PostPreview'
+
 function Posts(props) {
     var postText = null;
-
+    
     function setPostText(newText) {
         postText = newText;
     }
@@ -38,30 +39,30 @@ function Posts(props) {
           ?
           <p>No posts have been made yet!!</p>
           :
-          <div className="posts d-flex">
-            <div>
+          <div className="d-flex">
+            <div className="posts">
               <h2>All posts</h2>
               {allPosts.map(function(post){
-                return <PostPreview post={post} username={props.username}/>;
+                return <PostPreview post={post} username={props.username} avatarUrl={getAvatar(props.username)}/>;
               })}
             </div>
-            <div className="ml-5">
-              <h2>My posts</h2>
-              {userPosts != null
-                ?
-                userPosts.map(function(post){
-                return <PostPreview post={post} username={props.username}/>;
-              })
-                :
-                <>
-                  <p>You haven't made any posts yet.</p>
-                </>
+            {//<div className="ml-5">
+              //<h2>My posts</h2>
+              //{userPosts != null
+              //  ?
+              //  userPosts.map(function(post){
+              //  return <PostPreview post={post} username={props.username}/>;
+              //})
+              //  :
+              //  <>
+              //    <p>You haven't made any posts yet.</p>
+              //  </>
               }
-            </div>
+            </div>}
           </div>
-          }
           
-      </div>
+          
+      
       
     );
   }

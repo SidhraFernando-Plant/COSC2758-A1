@@ -90,9 +90,6 @@
   width: 94px;
 }
 
-.card {
-  width: 18rem;
-}
 
 .card-new-post {
   width: 50rem;
@@ -101,6 +98,16 @@
 .bold {
   font-weight: bold;
 }
+
+.posts{
+  width: 70%;
+}
+
+.post-avatar {
+  width: 60px;
+  margin-right: 10px;
+}
+
 
 
 

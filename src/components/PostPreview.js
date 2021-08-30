@@ -2,15 +2,17 @@ import React from 'react'
 import edit from '../img/edit.svg'
 import trash from '../img/delete.svg'
 import EditPostForm from './EditPostForm';
-import {editPost, deletePost} from "../data/repository";
+import {editPost, deletePost, getAvatar} from "../data/repository";
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import avatar from '../img/avatar.svg'
 
 
 export default function PostPreview(props) {
     const { id } = useParams();
     var pathName = "/view-post/" + props.post.id;
     var postText = null;
+    var avatarUrl = getAvatar(props.post.user);
     const [editing, setEditing] = useState(false);
     function setPostInput(newText) {
         postText = newText;
@@ -34,7 +36,19 @@ export default function PostPreview(props) {
             <div className="card">
                 <div className="card-body">
                     <div className="d-flex justify-content-between">
+                    <div class="d-flex">
+                        {avatarUrl==""
+                        ?
+                        <img src={avatar} className="post-avatar"></img>
+                        :
+                        <img src={avatarUrl} className="post-avatar"></img>
+                        }
+                        
+                        <div>
                         <h5 className="card-title">{props.post.user}</h5>
+                        <h6 className="card-subtitle mb-2 text-muted">{props.post.date}</h6>
+                        </div>
+                    </div>
                         <div>
                             {props.post.user===props.username &&
                             <span>
@@ -44,7 +58,7 @@ export default function PostPreview(props) {
                             }
                         </div>
                     </div>
-                    <h6 className="card-subtitle mb-2 text-muted">{props.post.date}</h6>
+                    
                     {!editing
                 ?
                 <p className="card-text">{props.post.post}</p>

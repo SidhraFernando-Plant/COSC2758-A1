@@ -11,11 +11,9 @@ import People from '../img/people.svg'
 import Post from '../img/post.svg'
 
 function Home(props) {
-    var imgSrc = localStorage.getItem("image");
     return (
       <div>
           {props.username !== null && <h4><strong>Hello {props.username}!</strong></h4>}
-          <img src={imgSrc}></img>
           <div className="jumbotron">
             <h1 className="display-4">Stay connected with VibeCheck</h1>
             <p className="lead">Feeling disconnected because of online study and lockdowns?</p>
