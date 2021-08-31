@@ -75,7 +75,7 @@
 .profile-details {
   width: 334px;
   height: 260px;
-  padding: 30px;
+  padding: 0px;
   margin: auto;
 }
 
@@ -176,6 +176,31 @@ h2 {
   color: #78ffd6;
   padding: 12px 24px 12px 24px;
   font-weight: bold;
+}
+
+.profile-title {
+  margin: 20px 0px 10px 0px;
+}
+
+.profile-header {
+  background: linear-gradient(to right, #78ffd6, #a8ff78);
+  padding: 20px 20px 20px 20px;
+}
+
+a {
+  color: #eaeaea;
+}
+
+.profile-info {
+  margin: 15px 0px 0px 20px
+}
+
+.posts-heading {
+  width: 70%;
+}
+
+.posts-heading button {
+  height: 30%;
 }
 
 

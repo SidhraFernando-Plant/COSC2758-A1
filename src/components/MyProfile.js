@@ -2,7 +2,7 @@ import avatar from '../img/avatar.svg'
 import edit from '../img/edit.svg'
 import trash from '../img/delete.svg'
 import {deleteUser, editUser, setUser, getAvatar, setAvatar} from "../data/repository";
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ImageUpload from './ImageUpload';
 function MyProfile(props) {
   var username = null;
@@ -45,56 +45,58 @@ function MyProfile(props) {
     return (
     <div>
   
-      <div className="d-flex align-items-center justify-content-center">
+      <div className="d-flex align-items-center justify-content-center profile-title">
         <h2 className="m-0 mr-2">{props.username}'s profile</h2>
         <img src={edit} className="profile-actions" onClick={editProfile}></img>
         <img src={trash} className="profile-actions" onClick={deleteProfile}></img>
       </div>
-      <div className="profile-details d-flex flex-column bg-light rounded mt-3 border justify-content-between">
-        <div className="d-flex align-items-center">
+      <div className="profile-details d-flex flex-column bg-light rounded mt-3 justify-content-start">
+        <div className="d-flex align-items-center profile-header">
             <div className="d-flex flex-column">
             {avatarUrl==""
             ?
-            <img src={avatar} className="avatar"></img>
+            <img src={avatar} className="avatar rounded-circle"></img>
             :
-            <img src={avatarUrl} className="avatar"></img>
+            <img src={avatarUrl} className="avatar rounded-circle"></img>
             }
               
             </div>
             {!editing
                 ?
-                <h2 className="ml-2">{props.username}</h2>
+                <div>
+                  <h3 className="m-0 ml-2">{props.username}</h3>
+                  <p className="m-0 ml-2 text-muted">Update avatar</p>
+                </div>
                 :
                 <>
                   <input type="text" value={props.user} className="form-control" id="newUsername" placeholder="Enter new username" onChange={e => setUsernameInput(e.target.value)}></input>
                 </>
               }
-            {//<h2 className="ml-2">{props.username}</h2>
+            {
             }
         </div>
         {!editing
           ?
-          <span className="ml-2">Email: {props.email}</span>
+          <span className="profile-info">Email: {props.email}</span>
           :
           <>
             <input type="email" value={props.email} className="form-control" id="newEmail" placeholder="Enter new email" onChange={e => setEmail(e.target.value)}></input>
           </>
         }
-        {//<span className="ml-2">Email: {props.email}</span>
+        {
 }
         {!editing
           ?
-          <span className="ml-2">Joined on: {props.dateJoined}</span>
+          <span className="profile-info mt-0">Vibing since {props.dateJoined}</span>
           :
           <>
             <div className="m-auto">
-              <button type="submit" onClick={cancelEdit} className="mt-3 btn btn-outline-primary d-inline">CANCEL</button>
+              <button type="submit" onClick={cancelEdit} className="mt-3 btn btn-outline-primary d-inline rounded-3">CANCEL</button>
               <button type="submit" onClick={() => updateProfile(username, email)} className="mt-3 ml-3 btn btn-primary d-inline">UPDATE</button>
               
             </div>
           </>
         }
-        <button type="submit" onClick={updateAvatar} className="mt-3 btn btn-outline-primary d-inline">Update avatar</button>
 
       </div>
     <ImageUpload username={props.username}/>    

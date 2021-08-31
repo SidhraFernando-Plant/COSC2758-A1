@@ -20,11 +20,15 @@ function Posts(props) {
 
     return (
       <div>
-        <h1>Posts</h1>
-        <button className="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" ar aria-expanded="false" aria-controls="collapseExample">
-            New post
-        </button>
-        <div className="collapse" id="collapseExample">
+        
+        
+        <div className="d-flex justify-content-between align-items-center posts-heading m-auto">
+              <h2>All posts</h2>
+                <button className="btn bg-grey white-hover dark-button" type="button" data-toggle="collapse" data-target="#collapseExample" ar aria-expanded="false" aria-controls="collapseExample">
+                  New post
+                </button>
+              </div>
+              <div className="collapse" id="collapseExample">
             <div className="card card-body card-new-post">
                 <div className="form-group">
                     <label for="exampleFormControlTextarea1">Share your thoughts...</label>
@@ -34,14 +38,13 @@ function Posts(props) {
                 </div>
                 
         </div>
-        
           {allPosts==null
           ?
           <p>No posts have been made yet!!</p>
           :
           <div className="d-flex">
-            <div className="posts">
-              <h2>All posts</h2>
+            <div className="posts m-auto">
+              
               {allPosts.map(function(post){
                 return <PostPreview post={post} username={props.username} avatarUrl={getAvatar(props.username)}/>;
               })}

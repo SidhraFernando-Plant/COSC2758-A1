@@ -19,7 +19,7 @@ function LogIn(props) {
             props.loginUser(username, email, date);
             setUser(username, email, date);
         // Navigate to the home page.
-            props.history.push("/");
+            props.history.push("/profile");
             return;
         }
     }
@@ -27,7 +27,7 @@ function LogIn(props) {
     return (
         <div>
         <h2 className="text-center">Log in</h2>
-        <div className="sign-up m-auto">
+        <div className="sign-up m-auto rounded-3">
             
             <form>
                 <div className="form-group">

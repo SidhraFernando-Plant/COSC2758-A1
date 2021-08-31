@@ -35,7 +35,7 @@ function SignUp() {
     return (
         <div>
         <h2 className="text-center fw-bolder fs-1">Sign up</h2>
-        <div className="sign-up m-auto rounded">
+        <div className="sign-up m-auto rounded-3">
             <form>
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
