@@ -25,8 +25,10 @@ function LogIn(props) {
     }
     
     return (
+        <div>
+        <h2 className="text-center">Log in</h2>
         <div className="sign-up m-auto">
-            <h2>Log in</h2>
+            
             <form>
                 <div className="form-group">
                     <label htmlFor="username">Username</label>
@@ -36,8 +38,9 @@ function LogIn(props) {
                     <label htmlFor="password">Password</label>
                     <input type="password" className="form-control" id="password" placeholder="Password" onChange={e => setPassword(e.target.value)}></input>
                 </div>
-                <button onClick={() => {logIn()}} type="submit" class="btn btn-primary m-auto">LOG IN</button>
+                <button onClick={() => {logIn()}} type="submit" class="btn bg-grey white-hover dark-button">LOG IN</button>
             </form>
+        </div>
         </div>
       
     );

@@ -4,17 +4,18 @@ import account from '../img/account.svg'
 
 function Header(props) {
     return (
-      <div className="d-flex justify-content-between align-items-center p-3">
+      <div className="d-flex justify-content-between align-items-center p-3 bg-grey">
           <a className="ml-3 text-decoration-none" href="/">
             <div className="d-flex">
-              <img src={logo} className="logo"></img>
-              <span className="ml-3 font-weight-bold logo">VibeCheck</span>
+              <img src={logo} className="logo-img"></img>
+              <span className="ml-3 font-weight-bold logo gradient-text">VibeCheck</span>
             </div>
           </a>
           <div>
             {props.username === null
                 ?
-                  <a href="/login"><button type="button" class="btn btn-outline-primary">Log in</button></a>
+                  //<a href="/login"><button type="button" class="btn btn-outline-primary">Log in</button></a>
+                  <a href="/login" class="btn btn-1">Log in</a>
                   //<a className="ml-3" href="/sign-up"><button type="button" class="btn btn-primary">Sign up</button></a>
                   //<a className="ml-3" href="/sign-up"><button type="button" class="btn btn-primary">My Profile</button></a>
                 :

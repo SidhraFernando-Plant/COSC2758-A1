@@ -29,13 +29,13 @@ function SignUp() {
             createUser(username, password, email, today);
         }
         else {
-            alert("Fields empty")
             return;
         }
     }
     return (
-        <div className="sign-up m-auto">
-            <h2>Sign up</h2>
+        <div>
+        <h2 className="text-center fw-bolder fs-1">Sign up</h2>
+        <div className="sign-up m-auto rounded">
             <form>
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
@@ -53,8 +53,9 @@ function SignUp() {
                     <label htmlFor="confirm-password">Password</label>
                     <input type="password" className="form-control" id="confirm-password" placeholder="Confirm password" onChange={e => setConfirmPassword(e.target.value)}></input>
                 </div>
-                <button type="submit" class="btn btn-primary m-auto" onClick={signUp}>SIGN UP</button>
+                <button type="submit" className="btn m-auto white-hover bg-grey dark-button" onClick={signUp}>SIGN UP</button>
             </form>
+        </div>
         </div>
       
     );
