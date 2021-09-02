@@ -143,6 +143,17 @@ function getAvatar(username) {
   return "";
 }
 
+function userExists(username) {
+  var returnVal = false;
+  const users = JSON.parse(localStorage.getItem(USERS_KEY));
+  for(const user of users) {
+    if(username===user.username) {
+        returnVal = true;
+    }
+  }
+  return returnVal;
+}
+
 //----------POSTS--------------
 
 //Maybe put this in a separate file
@@ -284,6 +295,7 @@ export {
     getDateByUsername,
     deleteUser,
     editUser,
+    userExists,
     createPost,
     getPosts,
     getPostsByUser,

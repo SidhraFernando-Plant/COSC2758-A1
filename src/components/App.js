@@ -38,7 +38,9 @@ function App() {
         <Header username={username} logoutUser={logoutUser}/>
         <main role="main">
           <Switch>
-            
+            <Route path="/signup" render={props => (
+              <SignUp {...props} />
+            )}/>
             <Route path="/login" render={props => (
               <LogIn {...props} loginUser={loginUser} />
               )} />
@@ -49,14 +51,9 @@ function App() {
             <Route path="/posts">
               <Posts username={username}/>
             </Route>
-            <Route path="/sign-up">
-              <SignUp/>
-            </Route>
+            
             <Route  path="/view-post/:id">
               <PostInspect username={username}/>
-            </Route>
-            <Route path="/upload-image">
-              <ImageUpload/>
             </Route>
             <Route path="/">
               <Home username={username}/>

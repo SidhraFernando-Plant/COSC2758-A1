@@ -221,6 +221,10 @@ a {
   margin-top: 10px;
 }
 
+.form-width {
+  width: 30%;
+  margin-bottom: 10px!important;
+}
 
 
 /*background: #a8ff78;  /* fallback for old browsers 

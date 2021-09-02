@@ -1,7 +1,9 @@
 import { setUser, verifyUser, initUsers, getEmailByUsername, getDateByUsername } from "../data/repository";
+import { useState } from "react";
 function LogIn(props) {
     var username = null;
     var password = null;
+    const [errorMessage, setErrorMessage] = useState(null);
 
     function setUsernameInput(newUsername) {
         username = newUsername;
@@ -22,11 +24,22 @@ function LogIn(props) {
             props.history.push("/profile");
             return;
         }
+        else {
+            setErrorMessage("Invalid login");
+            return;
+        }
     }
     
     return (
         <div>
         <h2 className="text-center">Log in</h2>
+        {errorMessage!=null &&
+
+            <div className="alert alert-danger form-width m-auto" role="alert">
+                {errorMessage}
+            </div>
+        }
+
         <div className="sign-up m-auto rounded-3">
             
             <form>
@@ -38,7 +51,7 @@ function LogIn(props) {
                     <label htmlFor="password">Password</label>
                     <input type="password" className="form-control" id="password" placeholder="Password" onChange={e => setPassword(e.target.value)}></input>
                 </div>
-                <button onClick={() => {logIn()}} type="submit" class="btn bg-grey white-hover dark-button">LOG IN</button>
+                <button onClick={() => {logIn()}} type="reset" class="btn bg-grey white-hover dark-button">LOG IN</button>
             </form>
         </div>
         </div>
