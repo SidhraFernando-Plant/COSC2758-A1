@@ -20,7 +20,9 @@ export default function PostPreview(props) {
     }
     function startDeletePost() {
         deletePost(props.post.id);
+        window.location.reload();
     }
+    
     function startEditPost() {
         setEditing(!editing);
         setShowReplies(!showReplies);
@@ -29,6 +31,7 @@ export default function PostPreview(props) {
         editPost(props.post.id, postText);
         window.location.reload();
     }
+    
     function cancelEdit() {
       setEditing(!editing);
       setShowReplies(!showReplies);

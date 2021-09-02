@@ -199,6 +199,42 @@ function deletePost(postId) {
   }
 }
 
+function deletePostsByUser(username) {
+  const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
+  var updatedPosts = [];
+  for(const post of posts) {
+    if(username!==post.user) {
+      //replies could be separate function
+      var replies = post.replies;
+      var newReplies = [];
+      for(const reply of replies) {
+        if(username!=reply.user) {
+          newReplies.push(reply);
+        }
+      }
+      post.replies = newReplies;
+      updatedPosts.push(post);
+    }
+  }
+  localStorage.setItem(POSTS_KEY, JSON.stringify(updatedPosts));
+}
+
+function updatePostsByUser(oldUsername, newUsername) {
+  const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
+  for(const post of posts) {
+    if(oldUsername==post.user) {
+        post.user = newUsername;
+    }
+    var replies = post.replies;
+    for(const reply of replies) {
+      if(oldUsername==reply.user) {
+        reply.user = newUsername;
+      }
+    }
+  }
+  localStorage.setItem(POSTS_KEY, JSON.stringify(posts));
+}
+
 function editPost(postId, newText) {
     const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
     for(const post of posts) {
@@ -257,7 +293,9 @@ export {
     createReply,
     getPostById,
     setAvatar,
-    getAvatar
+    getAvatar,
+    deletePostsByUser,
+    updatePostsByUser,
 }
 
 //[{"username":"mbolger","password":"abc123"},{"username":"shekhar","password":"def456"}]

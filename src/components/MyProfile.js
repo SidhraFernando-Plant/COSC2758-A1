@@ -1,7 +1,7 @@
 import avatar from '../img/avatar.svg'
 import edit from '../img/edit.svg'
 import trash from '../img/delete.svg'
-import {deleteUser, editUser, setUser, getAvatar, setAvatar} from "../data/repository";
+import {deleteUser, editUser, setUser, getAvatar, setAvatar, deletePostsByUser, updatePostsByUser} from "../data/repository";
 import React, { useState } from 'react';
 import ImageUpload from './ImageUpload';
 function MyProfile(props) {
@@ -21,6 +21,7 @@ function MyProfile(props) {
         //change to better alert
         //if(window.confirm('Are you sure you want to delete your account?')) {
             deleteUser(props.username);
+            deletePostsByUser(props.username);
             props.logoutUser();
             props.history.push("/");
         //}
@@ -35,6 +36,7 @@ function MyProfile(props) {
       editUser(props.username, newUsername, newEmail);
       props.loginUser(newUsername, newEmail, props.dateJoined);
       setUser(newUsername, newEmail, props.dateJoined);
+      updatePostsByUser(props.username, newUsername);
       setEditing(!editing);
     }
 
