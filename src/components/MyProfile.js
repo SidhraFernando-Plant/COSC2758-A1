@@ -44,13 +44,33 @@ function MyProfile(props) {
     
     return (
     <div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Upload image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ImageUpload/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark text-grey white-hover dark-button" data-dismiss="modal">Close</button>
+        <button type="button" class="btn bg-grey white-hover dark-button">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
   
       <div className="d-flex align-items-center justify-content-center profile-title">
         <h2 className="m-0 mr-2">{props.username}'s profile</h2>
         <img src={edit} className="profile-actions" onClick={editProfile}></img>
         <img src={trash} className="profile-actions" onClick={deleteProfile}></img>
       </div>
-      <div className="profile-details d-flex flex-column bg-light rounded mt-3 justify-content-start">
+      <div className="profile-details d-flex flex-column rounded mt-3 bg-grey justify-content-start">
         <div className="d-flex align-items-center profile-header">
             <div className="d-flex flex-column">
             {avatarUrl==""
@@ -65,7 +85,7 @@ function MyProfile(props) {
                 ?
                 <div>
                   <h3 className="m-0 ml-2">{props.username}</h3>
-                  <p className="m-0 ml-2 text-muted">Update avatar</p>
+                  <a className="m-0 ml-2 text-muted" data-toggle="modal" data-target="#exampleModal">Update avatar</a>
                 </div>
                 :
                 <>
@@ -77,7 +97,7 @@ function MyProfile(props) {
         </div>
         {!editing
           ?
-          <span className="profile-info">Email: {props.email}</span>
+          <span className="profile-info text-light">Email: {props.email}</span>
           :
           <>
             <input type="email" value={props.email} className="form-control" id="newEmail" placeholder="Enter new email" onChange={e => setEmail(e.target.value)}></input>
@@ -87,7 +107,7 @@ function MyProfile(props) {
 }
         {!editing
           ?
-          <span className="profile-info mt-0">Vibing since {props.dateJoined}</span>
+          <span className="profile-info mt-0 text-light">Vibing since {props.dateJoined}</span>
           :
           <>
             <div className="m-auto">
@@ -99,7 +119,6 @@ function MyProfile(props) {
         }
 
       </div>
-    <ImageUpload username={props.username}/>    
     </div>
     );
   }

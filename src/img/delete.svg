@@ -4,10 +4,10 @@
 	 viewBox="0 0 48 48" style="enable-background:new 0 0 48 48;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:none;}
-	.st1{fill:#333534;stroke:url(#SVGID_1_);stroke-miterlimit:10;}
+	.st1{fill:url(#SVGID_1_);}
 </style>
 <path class="st0" d="M0,0h48v48H0V0z"/>
-<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="9.5" y1="24" x2="38.5" y2="24">
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="10" y1="24" x2="38" y2="24">
 	<stop  offset="0" style="stop-color:#78FFD6"/>
 	<stop  offset="1" style="stop-color:#A8FF78"/>
 </linearGradient>

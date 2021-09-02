@@ -14,6 +14,7 @@ export default function PostPreview(props) {
     var postText = null;
     var avatarUrl = getAvatar(props.post.user);
     const [editing, setEditing] = useState(false);
+    const [showReplies, setShowReplies] = useState(props.showReplies);
     function setPostInput(newText) {
         postText = newText;
     }
@@ -22,6 +23,7 @@ export default function PostPreview(props) {
     }
     function startEditPost() {
         setEditing(!editing);
+        setShowReplies(!showReplies);
     }
     function updatePost() {
         editPost(props.post.id, postText);
@@ -29,23 +31,24 @@ export default function PostPreview(props) {
     }
     function cancelEdit() {
       setEditing(!editing);
+      setShowReplies(!showReplies);
     }
       
     return (
         <div>
-            <div className="card">
-                <div className="card-body">
+            <div className="card mb-2">
+                <div className="card-body bg-grey rounded border-0">
                     <div className="d-flex justify-content-between">
                     <div class="d-flex">
                         {avatarUrl==""
                         ?
-                        <img src={avatar} className="post-avatar"></img>
+                        <img src={avatar} className="post-avatar border border-light rounded-circle"></img>
                         :
-                        <img src={avatarUrl} className="post-avatar"></img>
+                        <img src={avatarUrl} className="post-avatar border border-light rounded-circle"></img>
                         }
                         
                         <div>
-                        <h5 className="card-title">{props.post.user}</h5>
+                        <h5 className="card-title text-light gradient-text">{props.post.user}</h5>
                         <h6 className="card-subtitle mb-2 text-muted">{props.post.date}</h6>
                         </div>
                     </div>
@@ -61,16 +64,18 @@ export default function PostPreview(props) {
                     
                     {!editing
                 ?
-                <p className="card-text">{props.post.post}</p>
+                <p className="card-text text-light">{props.post.post}</p>
                 :
                 <>
-                <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" onChange={e => setPostInput(e.target.value)}>{props.post.post}</textarea>                
-                <button type="submit" onClick={cancelEdit} className="mt-3 btn btn-outline-primary d-inline">CANCEL</button>
-                <button type="submit" onClick={() => updatePost()} className="mt-3 ml-3 btn btn-primary d-inline">SAVE</button>
+                <textarea className="form-control mt-3" id="exampleFormControlTextarea1" rows="3" onChange={e => setPostInput(e.target.value)}>{props.post.post}</textarea>                
+                <button type="submit" onClick={cancelEdit} className="mt-3 btn btn-outline-info d-inline text-light">CANCEL</button>
+                <button type="submit" onClick={() => updatePost()} className="mt-3 ml-3 btn btn-1 d-inline">SAVE</button>
                 </>
               }
-                    
-                <Link to={pathName}>↪Reply &#40;{props.post.replies.length} replies&#41;</Link>
+                {showReplies &&
+                    <Link className="bg-secondary rounded p-2 text-light" to={pathName}><u>↪Reply &#40;{props.post.replies.length} replies&#41;</u></Link>
+                }
+                
                 </div>
             </div>
             

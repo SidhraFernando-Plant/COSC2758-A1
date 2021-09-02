@@ -192,7 +192,7 @@ function deletePost(postId) {
   const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
   for(var i=0;i<posts.length;i++) {
     if(postId===posts[i].id) {
-        posts.splice(i, i+1);
+        posts.splice(i, 1);
         localStorage.setItem(POSTS_KEY, JSON.stringify(posts));
         return;
     }

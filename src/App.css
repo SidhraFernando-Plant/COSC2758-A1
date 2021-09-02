@@ -74,8 +74,7 @@
 
 .profile-details {
   width: 334px;
-  height: 260px;
-  padding: 0px;
+  padding: 0px 0px 20px 0px;
   margin: auto;
 }
 
@@ -99,7 +98,8 @@
 
 
 .card-new-post {
-  width: 50rem;
+  width: 70%;
+  margin-left: 15%;
 }
 
 .bold {
@@ -117,6 +117,10 @@
 
 .bg-grey {
   background-color: #333534;
+}
+
+.text-grey {
+  color: #333534;
 }
 
 .gradient-text {
@@ -203,7 +207,19 @@ a {
   height: 30%;
 }
 
+.post {
+  width: 70%;
+}
 
+.text-grey {
+  color: #333534;
+}
+
+.align-body {
+  margin-left: 15%;
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
 
 
 
