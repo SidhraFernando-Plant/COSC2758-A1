@@ -3,10 +3,16 @@ import PostPreview from './PostPreview'
 import { createReply, getReplies, getPostById } from '../data/repository';
 import { useLocation, useParams } from 'react-router-dom';
 import Reply from './Reply';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 export default function PostInspect(props) {
+    useEffect(() => {
+        if(props.username===null||props.username==="") {
+          window.location.href = "/login";
+        }
+    });
+
     var sample = {post: "fourth post", user: "Anotheruser", date: "Mon Aug 30 2021", id: 4};
     const { id } = useParams();
     var post = getPostById(parseInt(id));

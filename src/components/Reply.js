@@ -1,6 +1,7 @@
 import React from 'react'
 import { getAvatar } from '../data/repository';
-import avatar from '../img/avatar.svg'
+import avatar from '../img/avatar.svg';
+
 
 export default function Reply(props) {
     var avatarUrl = getAvatar(props.reply.user);

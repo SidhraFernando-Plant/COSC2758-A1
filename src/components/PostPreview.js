@@ -3,7 +3,7 @@ import edit from '../img/edit.svg'
 import trash from '../img/delete.svg'
 import EditPostForm from './EditPostForm';
 import {editPost, deletePost, getAvatar} from "../data/repository";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import avatar from '../img/avatar.svg'
 
@@ -15,6 +15,12 @@ export default function PostPreview(props) {
     var avatarUrl = getAvatar(props.post.user);
     const [editing, setEditing] = useState(false);
     const [showReplies, setShowReplies] = useState(props.showReplies);
+    useEffect(() => {
+        if(props.username===null||props.username==="") {
+          window.location.href = "/login";
+        }
+    });
+
     function setPostInput(newText) {
         postText = newText;
     }

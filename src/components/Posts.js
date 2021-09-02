@@ -1,9 +1,15 @@
 import {createPost, getPosts, getPostsByUser, getAvatar} from "../data/repository"
 import PostPreview from './PostPreview'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Posts(props) {
     var postText = null;
+
+    useEffect(() => {
+      if(props.username===null||props.username==="") {
+        window.location.href = "/login";
+      }
+    });
     
     function setPostText(newText) {
         postText = newText;
