@@ -14,10 +14,7 @@ function Header(props) {
           <div>
             {props.username === null
                 ?
-                  //<a href="/login"><button type="button" class="btn btn-outline-primary">Log in</button></a>
                   <a href="/login" class="btn btn-1">Log in</a>
-                  //<a className="ml-3" href="/sign-up"><button type="button" class="btn btn-primary">Sign up</button></a>
-                  //<a className="ml-3" href="/sign-up"><button type="button" class="btn btn-primary">My Profile</button></a>
                 :
                 <>
                   <a href="/posts" className="mr-2">Forum</a>

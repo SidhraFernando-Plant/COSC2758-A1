@@ -34,7 +34,6 @@ export default function ImageUpload(props) {
 
     return (
         <div>
-            
             <img width="200" height="200" src={dataUri} alt="avatar"/>
             <input type="file" onChange={(event) => onChange(event.target.files[0] || null)} />
             <button onClick={() => {saveAvatar()}} type="submit" class="btn btn-primary m-auto">SAVE</button>

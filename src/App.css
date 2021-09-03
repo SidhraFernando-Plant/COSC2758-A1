@@ -226,6 +226,10 @@ a {
   margin-bottom: 10px!important;
 }
 
+.collapsible-form {
+  margin-bottom: 15px !important;
+}
+
 
 /*background: #a8ff78;  /* fallback for old browsers 
 background: -webkit-linear-gradient(to right, #78ffd6, #a8ff78);   Chrome 10-25, Safari 5.1-6

@@ -4,6 +4,7 @@ import { createReply, getReplies, getPostById } from '../data/repository';
 import { useLocation, useParams } from 'react-router-dom';
 import Reply from './Reply';
 import { useState, useEffect } from 'react';
+import CollapsibleForm from './CollapsibleForm';
 
 
 export default function PostInspect(props) {
@@ -21,10 +22,10 @@ export default function PostInspect(props) {
         replyText = newText;
     }
 
-    function makeReply(textPost) {
+    function makeReply(newReplyText) {
         var today = new Date();
         today = today.toDateString();
-        createReply(replyText, props.username, today, id);
+        createReply(newReplyText, props.username, today, id);
         setReplies(getReplies(parseInt(id)));
         document.getElementById("reply-input").value = "";
     }
@@ -36,23 +37,9 @@ export default function PostInspect(props) {
             <div className="mt-3">
                 <PostPreview post={post} showReplies={false}/>
             </div>
-            <div className="d-flex justify-content-between align-items-center m-auto">
-              <h2>Replies</h2>
-                <button className="btn bg-grey white-hover dark-button" type="button" data-toggle="collapse" data-target="#collapseExample" ar aria-expanded="false" aria-controls="collapseExample">
-                  + New reply
-                </button>
-              </div>
-              <div className="collapse" id="collapseExample">
-            <div className="card card-body mb-3">
-                <div className="form-group">
-                    <label for="exampleFormControlTextarea1">Share your thoughts...</label>
-                    <textarea id="reply-input" className="form-control" rows="3" onChange={e => setReplyText(e.target.value)}></textarea>
-                    </div>
-                    <button type="submit" className="btn btn-1 d-inline post-button" data-toggle="collapse" data-target="#collapseExample" ar aria-expanded="false" aria-controls="collapseExample" onClick={() => makeReply(replyText)}>Submit</button>
-                </div>
-                
-        </div>
+            
             </div>
+            <CollapsibleForm heading="Replies" formTitle="+ New reply" txtAreaLabel="Let sidi know what you think..." handleSubmit={makeReply}/>
                 
                 <div className="post m-auto">
                 
