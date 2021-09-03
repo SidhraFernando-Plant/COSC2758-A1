@@ -8,17 +8,17 @@ import CollapsibleForm from "./CollapsibleForm";
 //Show all posts in descending chronological order to user
 function Posts(props) {
     var postText = null;
+    const [allPosts, setPosts] = useState(getPosts());
 
+    //Secured page: only allow access if user is logged in
     useEffect(() => {
       if(props.username===null||props.username==="") {
         window.location.href = "/login";
       }
     });
-    
-    function setPostText(newText) {
-        postText = newText;
-    }
 
+    // Params: textPost (string)  | Return: none
+    // make a new post with text textPost, update the state allPosts and clear the input field for making new post
     function makePost(textPost) {
       var today = new Date();
       today = today.toDateString();
@@ -27,16 +27,9 @@ function Posts(props) {
       document.getElementById("new-post-form").reset()
     }
 
-    const [allPosts, setPosts] = useState(getPosts());
-
     return (
       <div>
-        
-        
-        
         <CollapsibleForm heading="All posts" formTitle="+ New post" txtAreaLabel="Share your thoughts..." handleSubmit={makePost}/>
-                
-        
           {allPosts==null
           ?
           <p>No posts have been made yet!!</p>
@@ -50,10 +43,6 @@ function Posts(props) {
             </div>
             </div>}
           </div>
-          
-          
-      
-      
     );
   }
   

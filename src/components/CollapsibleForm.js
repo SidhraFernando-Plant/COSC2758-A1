@@ -4,10 +4,14 @@ import React from 'react'
 //Heading and collapsible form fo submitting text (post/reply) used in multiple components
 export default function CollapsibleForm(props) {
     var fieldText = "";
+    // Params: val (string)  | Return: none
+    // when input val is entered into textarea field, update fieldtext
     function handleChange(val) {
         fieldText = val;
     }
-
+    
+    // Params: val (string)  | Return: none
+    // when user submits the input, call the parent components handleSubmit function to save the input in appropriate location
     function sendVal(val) {
         props.handleSubmit(val);
     }

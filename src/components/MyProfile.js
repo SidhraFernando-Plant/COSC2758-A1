@@ -11,47 +11,60 @@ import ImageUpload from './ImageUpload';
 function MyProfile(props) {
   var username = null;
   var email = null;
-
+  
+  //track whether a user is editing their profile or not and change display accordingly
+  const [editing, setEditing] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState(getAvatar(props.username));
+  //Secured page: only allow access if user is logged in
   useEffect(() => {
     if(props.username===null||props.username==="") {
       window.location.href = "/login";
     }
   });
 
+  // Params: newUsername (string)  | Return: none
+  // when input newUsername is entered into textarea field, update username
   function setUsernameInput(newUsername) {
       username = newUsername;
   }
 
+  // Params: newEmail (string)  | Return: none
+  // when input newEmail is entered into textarea field, update email
   function setEmail(newEmail) {
       email = newEmail;
   }
-    const [editing, setEditing] = useState(false);
-    const [avatarUrl, setAvatarUrl] = useState(getAvatar(props.username));
-    function deleteProfile() {
-        //change to better alert
-        //if(window.confirm('Are you sure you want to delete your account?')) {
-            deleteUser(props.username);
-            deletePostsByUser(props.username);
-            props.logoutUser();
-            props.history.push("/");
+  
+
+  // delete the current users profile and log them out
+  function deleteProfile() {
+    //if(window.confirm('Are you sure you want to delete your account?')) {
+    deleteUser(props.username);
+    deletePostsByUser(props.username);
+    props.logoutUser();
+    //Navigate back to home screen
+    props.history.push("/");
         //}
     }
+    
+    //change state editing to true and allow user to edit their profile
     function editProfile() {
-        setEditing(!editing);
+        setEditing(true);
     }
+    
+    //change state editing to false and change profile information to read-only
     function cancelEdit() {
       setEditing(!editing);
     }
+
+    // Params: newUsername (string), newEmail (string)  | Return: none
+    // update a user's profile record in local storage with information entered in input fields
     function updateProfile(newUsername, newEmail) {
       editUser(props.username, newUsername, newEmail);
       props.loginUser(newUsername, newEmail, props.dateJoined);
       setUser(newUsername, newEmail, props.dateJoined);
       updatePostsByUser(props.username, newUsername);
+      //change back to read-only
       setEditing(!editing);
-    }
-
-    function updateAvatar() {
-
     }
     
     return (
@@ -115,8 +128,7 @@ function MyProfile(props) {
                   <input type="email" value={props.email} className="form-control" id="newEmail" placeholder="Enter new email" onChange={e => setEmail(e.target.value)}></input>
                 </>
               }
-              {
-      }
+              {/* user cannot edit the date that they joined, so it is not displayed in editing mode */}
               {!editing
                 ?
                 <span className="profile-info mt-0 text-light">Vibing since {props.dateJoined}</span>

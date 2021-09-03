@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react';
 import { setAvatar } from '../data/userRepository';
 
+// Params: file (file)  | Return: none
+// convert uploaded file <file> into a base 64 blob url
 const fileToDataUri = (file) => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = (event) => {
@@ -10,18 +12,20 @@ const fileToDataUri = (file) => new Promise((resolve, reject) => {
     reader.readAsDataURL(file);
     })
 
-// props: none | User can upload an image that will be saved to localStorage, can be embedded into other components
-export default function ImageUpload() {
+// props: username (str) | User can upload an image that will be saved to localStorage, can be embedded into other components
+export default function ImageUpload(props) {
     const [dataUri, setDataUri] = useState('')
 
+    // Params: file (file)  | Return: none
+    // when a file is uploaded to the file input, convert it to a base 74 blob url and store this blob in state dataUri
     const onChange = (file) => {
   
     if(!file) {
         setDataUri('');
         return;
     }
-
-    if(file.size > 2097152){
+    //do not allow files bigger than 1MB
+    if(file.size > 1048576){
         alert("File is too big!");
         return;
     }
@@ -32,16 +36,13 @@ export default function ImageUpload() {
         })
     }
 
+    // Params: none  | Return: none
+    // save the blob url in state daraUri in this users record in local storage to update their avatar
+    // save function has not been passed with props as this resulted in issues when passing the blob to the function in parent component
     function saveAvatar() {
         setAvatar(props.username, dataUri);
         window.location.reload();
     }
-
-
-    var uploadField = document.getElementById("file");
-
-    
-  
 
     return (
         <div className="d-flex">

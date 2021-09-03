@@ -10,6 +10,7 @@ function SignUp(props) {
     var confirmPassword = null;
     const [errorMessage, setErrorMessage] = useState(null);
 
+    //Secured page: only allow access if user is not logged in
     useEffect(() => {
         if(props.username !== null) {
             alert("You can't sign up because you are already logged in!");
@@ -33,11 +34,14 @@ function SignUp(props) {
         confirmPassword = newPassword;
     }
 
+
+    // Validate user inputs, and if all inputs are valid save the new user
     function signUp() {
         if(username!==null&&email!==null&&password!==null&&confirmPassword!==null) {
             var today = new Date();
             today = today.toDateString();
             createUser(username, password, email, today);
+            //Navigate to sign in
             props.history.push("/login");
             return;
         }

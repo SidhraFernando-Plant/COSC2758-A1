@@ -8,22 +8,29 @@ function LogIn(props) {
     var password = null;
     const [errorMessage, setErrorMessage] = useState(null);
 
+    // Params: newUsername (string)  | Return: none
+    // when input newUsername is entered into username field, update username
     function setUsernameInput(newUsername) {
         username = newUsername;
     }
 
+    // Params: newPassword (string)  | Return: none
+    // when input newPassword is entered into textarea field, update password
     function setPassword(newPassword) {
         password = newPassword;
     }
 
+
+    // authenticate a user's credentials, if successful log in the user
     function logIn() {
         initUsers();
         if(verifyUser(username, password)) {
             var email = getEmailByUsername(username);
             var date = getDateByUsername(username);
+            //Store user information
             props.loginUser(username, email, date);
             setUser(username, email, date);
-        // Navigate to the home page.
+            // Navigate to profile upon successful login
             props.history.push("/profile");
             return;
         }

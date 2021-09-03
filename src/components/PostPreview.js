@@ -11,34 +11,39 @@ import avatar from '../img/avatar.svg'
 //Display a post including user who made it, date posted, post text, replies (toggle with showReplies), and ability to edit/delete if user viewing is author
 export default function PostPreview(props) {
     const { id } = useParams();
+    //link to PostInspect component and pass id of this post in the URL, used in link to reply
     var pathName = "/view-post/" + props.post.id;
     var postText = null;
     var avatarUrl = getAvatar(props.post.user);
+    //track whether a user is editing their post or not and change display accordingly
     const [editing, setEditing] = useState(false);
     const [showReplies, setShowReplies] = useState(props.showReplies);
-    useEffect(() => {
-        if(props.username===null||props.username==="") {
-          window.location.href = "/login";
-        }
-    });
 
+    // Params: newText (string)  | Return: none
+    // when input newText is entered into textarea field, update postText
     function setPostInput(newText) {
         postText = newText;
     }
+
+    // delete the post with repository method
     function startDeletePost() {
         deletePost(props.post.id);
         window.location.reload();
     }
     
+    //set editing to true to make post text editable, and remove link to replies while editing
     function startEditPost() {
         setEditing(!editing);
         setShowReplies(!showReplies);
     }
+    
+    //save edits made to post by saving postText as the new text for the post
     function updatePost() {
         editPost(props.post.id, postText);
         window.location.reload();
     }
     
+    //change state editing to false and change post to read-only
     function cancelEdit() {
       setEditing(!editing);
       setShowReplies(!showReplies);
@@ -50,6 +55,7 @@ export default function PostPreview(props) {
                 <div className="card-body bg-grey rounded border-0">
                     <div className="d-flex justify-content-between">
                     <div class="d-flex">
+                        {/* assign default avatar if user has not uploaded one */}
                         {avatarUrl==""
                         ?
                         <img src={avatar} className="post-avatar border border-light rounded-circle"></img>
@@ -63,6 +69,7 @@ export default function PostPreview(props) {
                         </div>
                     </div>
                         <div>
+                            {/* allow editing/deleting if user is author of post*/}
                             {props.post.user===props.username &&
                             <span>
                             <img src={edit} className="profile-actions" onClick={startEditPost} data-toggle="modal" data-target="#exampleModal"></img>  
@@ -72,6 +79,7 @@ export default function PostPreview(props) {
                         </div>
                     </div>
                     
+                    {/* if user is in editing mode, display post as input field to allow changes */}
                     {!editing
                 ?
                 <p className="card-text text-light">{props.post.post}</p>
@@ -82,6 +90,7 @@ export default function PostPreview(props) {
                 <button type="submit" onClick={() => updatePost()} className="mt-3 ml-3 btn btn-1 d-inline">SAVE</button>
                 </>
               }
+                {/* link to PostInspect and pass the id of this component in the URL */}
                 {showReplies &&
                     <Link className="bg-secondary rounded p-2 text-light" to={pathName}><u>↪Reply &#40;{props.post.replies.length} replies&#41;</u></Link>
                 }
