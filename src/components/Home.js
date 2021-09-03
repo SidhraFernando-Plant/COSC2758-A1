@@ -2,7 +2,8 @@ import Carousel from './Carousel'
 import Features from './Features';
 import Headline from './Headline';
 
-function Home(props) {
+// props: none | The landing page, to inform users about VibeCheck and provide signup/login links
+function Home() {
     return (
       <div>
           <Headline/>

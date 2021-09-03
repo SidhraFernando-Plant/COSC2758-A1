@@ -1,6 +1,8 @@
 import React from 'react'
 import Stars from '../img/stars.png'
 
+// props: none | Block headline section for homepage, extracted into separate component to simplify Home.js and make more versatile
+
 export default function Headline() {
     return (
       <div>

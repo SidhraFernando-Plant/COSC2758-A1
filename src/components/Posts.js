@@ -4,6 +4,8 @@ import PostPreview from './PostPreview'
 import { useState, useEffect } from "react";
 import CollapsibleForm from "./CollapsibleForm";
 
+//props: username (str), 
+//Show all posts in descending chronological order to user
 function Posts(props) {
     var postText = null;
 

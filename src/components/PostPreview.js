@@ -7,7 +7,8 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import avatar from '../img/avatar.svg'
 
-
+//props: post (Object of type: post), showReplies (boolean), username (str)
+//Display a post including user who made it, date posted, post text, replies (toggle with showReplies), and ability to edit/delete if user viewing is author
 export default function PostPreview(props) {
     const { id } = useParams();
     var pathName = "/view-post/" + props.post.id;

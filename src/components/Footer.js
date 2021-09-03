@@ -1,3 +1,4 @@
+// props: none | The footer for all pages
 function Footer() {
     return (
       <div className="bg-light footer">

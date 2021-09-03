@@ -5,6 +5,9 @@ import {deleteUser, editUser, setUser, getAvatar, setAvatar} from "../data/userR
 import {deletePostsByUser, updatePostsByUser} from "../data/postRepository";
 import React, { useState, useEffect } from 'react';
 import ImageUpload from './ImageUpload';
+
+// props: username (str), email (str), dateJoined(str)
+//Show user their profile details and allow them to edit some details
 function MyProfile(props) {
   var username = null;
   var email = null;
@@ -98,7 +101,7 @@ function MyProfile(props) {
                       </div>
                       :
                       <>
-                        <input type="text" value={props.user} className="form-control" id="newUsername" placeholder="Enter new username" onChange={e => setUsernameInput(e.target.value)}></input>
+                        <input type="text" value={props.username} className="form-control" id="newUsername" placeholder="Enter new username" onChange={e => setUsernameInput(e.target.value)}></input>
                       </>
                     }
                   {

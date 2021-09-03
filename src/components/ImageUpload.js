@@ -10,7 +10,8 @@ const fileToDataUri = (file) => new Promise((resolve, reject) => {
     reader.readAsDataURL(file);
     })
 
-export default function ImageUpload(props) {
+// props: none | User can upload an image that will be saved to localStorage, can be embedded into other components
+export default function ImageUpload() {
     const [dataUri, setDataUri] = useState('')
 
     const onChange = (file) => {

@@ -6,7 +6,8 @@ import Reply from './Reply';
 import { useState, useEffect } from 'react';
 import CollapsibleForm from './CollapsibleForm';
 
-
+//props: username (str), 
+//Display a post with all of its replies, and allow user to submit a reply
 export default function PostInspect(props) {
     useEffect(() => {
         if(props.username===null||props.username==="") {

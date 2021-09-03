@@ -2,7 +2,8 @@ import React from 'react'
 import { getAvatar } from '../data/userRepository';
 import avatar from '../img/avatar.svg';
 
-
+//props: reply (Object of type: reply) 
+//Display a reply including user who made it, date posted, reply text
 export default function Reply(props) {
     var avatarUrl = getAvatar(props.reply.user);
     return (

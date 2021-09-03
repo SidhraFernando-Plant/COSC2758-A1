@@ -1,3 +1,4 @@
+// props: none | Provide navigation for the user and display logo
 function Nav_Bar() {
     return (
       <div>

@@ -1,5 +1,8 @@
 import { createUser, userExists } from "../data/userRepository";
 import { useState, useEffect } from "react";
+
+//props: username (str)
+//Sign up form with validation, allows users to create an account
 function SignUp(props) {
     var username = null;
     var email = null;

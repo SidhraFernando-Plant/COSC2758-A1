@@ -4,6 +4,7 @@ import Chat from '../img/chat.svg'
 import People from '../img/people.svg'
 import Post from '../img/post.svg'
 
+// props: none | Feature section for homepage, extracted into separate component to simplify Home.js and make more versatile
 export default function Features() {
     return (
         <React.Fragment>

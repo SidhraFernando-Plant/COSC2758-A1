@@ -1,5 +1,8 @@
 import { setUser, verifyUser, initUsers, getEmailByUsername, getDateByUsername } from "../data/userRepository";
 import { useState } from "react";
+
+//props: username (str), history 
+//Log in form with authentication functions
 function LogIn(props) {
     var username = null;
     var password = null;

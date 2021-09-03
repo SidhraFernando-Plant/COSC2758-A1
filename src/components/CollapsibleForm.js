@@ -1,5 +1,7 @@
 import React from 'react'
 
+// props: heading (str), formTitle (str), txtAreaLabel (str), handleSubmit (function)
+//Heading and collapsible form fo submitting text (post/reply) used in multiple components
 export default function CollapsibleForm(props) {
     var fieldText = "";
     function handleChange(val) {
