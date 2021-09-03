@@ -1,7 +1,8 @@
 import React from 'react'
 import edit from '../img/edit.svg'
 import trash from '../img/delete.svg'
-import {editPost, deletePost, getAvatar} from "../data/repository";
+import {getAvatar} from "../data/userRepository";
+import {editPost, deletePost} from "../data/postRepository";
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import avatar from '../img/avatar.svg'

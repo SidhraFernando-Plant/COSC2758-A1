@@ -1,4 +1,5 @@
-import {createPost, getPosts, getPostsByUser, getAvatar} from "../data/repository"
+import {getAvatar} from "../data/userRepository"
+import {createPost, getPosts, getPostsByUser} from "../data/postRepository"
 import PostPreview from './PostPreview'
 import { useState, useEffect } from "react";
 import CollapsibleForm from "./CollapsibleForm";
@@ -32,22 +33,6 @@ function Posts(props) {
         
         
         <CollapsibleForm heading="All posts" formTitle="+ New post" txtAreaLabel="Share your thoughts..." handleSubmit={makePost}/>
-              {/* <h2>All posts</h2> 
-                <button className="btn bg-grey white-hover dark-button" type="button" data-toggle="collapse" data-target="#collapseExample" ar aria-expanded="false" aria-controls="collapseExample">
-                  + New post
-                </button>
-              </div>
-              <div className="collapse" id="collapseExample">
-            <div className="card card-body card-new-post mb-3">
-                <div className="form-group">
-                    <form id="new-post-form">
-                    <label for="exampleFormControlTextarea1">Share your thoughts...</label>
-                    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" onChange={e => setPostText(e.target.value)}></textarea>
-                    
-                    <button type="submit" className="mt-3 btn btn-1 d-inline post-button" data-toggle="collapse" data-target="#collapseExample" ar aria-expanded="false" aria-controls="collapseExample" onClick={e => makePost(postText)}>Submit</button>
-                    </form>
-                    </div>
-                </div>*/}
                 
         
           {allPosts==null

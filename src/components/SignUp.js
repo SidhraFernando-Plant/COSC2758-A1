@@ -1,11 +1,18 @@
-import { createUser, userExists } from "../data/repository";
-import { useState } from "react";
+import { createUser, userExists } from "../data/userRepository";
+import { useState, useEffect } from "react";
 function SignUp(props) {
     var username = null;
     var email = null;
     var password = null;
     var confirmPassword = null;
     const [errorMessage, setErrorMessage] = useState(null);
+
+    useEffect(() => {
+        if(props.username !== null) {
+            alert("You can't sign up because you are already logged in!");
+            window.location.href = "/";
+        }
+      });
 
     function setName(newUsername) {
         username = newUsername;

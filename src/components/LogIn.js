@@ -1,4 +1,4 @@
-import { setUser, verifyUser, initUsers, getEmailByUsername, getDateByUsername } from "../data/repository";
+import { setUser, verifyUser, initUsers, getEmailByUsername, getDateByUsername } from "../data/userRepository";
 import { useState } from "react";
 function LogIn(props) {
     var username = null;
@@ -35,7 +35,7 @@ function LogIn(props) {
         <h2 className="text-center">Log in</h2>
         {errorMessage!=null &&
 
-            <div className="alert alert-danger form-width m-auto" role="alert">
+            <div className="alert alert-danger form-width m-auto animated fadeInanimated fadeIn" role="alert">
                 {errorMessage}
             </div>
         }

@@ -1,7 +1,8 @@
 import avatar from '../img/avatar.svg'
 import edit from '../img/edit.svg'
 import trash from '../img/delete.svg'
-import {deleteUser, editUser, setUser, getAvatar, setAvatar, deletePostsByUser, updatePostsByUser} from "../data/repository";
+import {deleteUser, editUser, setUser, getAvatar, setAvatar} from "../data/userRepository";
+import {deletePostsByUser, updatePostsByUser} from "../data/postRepository";
 import React, { useState, useEffect } from 'react';
 import ImageUpload from './ImageUpload';
 function MyProfile(props) {
@@ -62,12 +63,12 @@ function MyProfile(props) {
               </button>
             </div>
             <div class="modal-body">
-              <ImageUpload/>
+              <ImageUpload username={props.username}/>
             </div>
-            <div class="modal-footer">
+            {/*<div class="modal-footer">
               <button type="button" class="btn btn-outline-dark text-grey white-hover dark-button" data-dismiss="modal">Close</button>
               <button type="button" class="btn bg-grey white-hover dark-button">Save changes</button>
-            </div>
+            </div>*/}
           </div>
         </div>
       </div>
@@ -80,6 +81,7 @@ function MyProfile(props) {
             <div className="profile-details d-flex flex-column rounded mt-3 bg-grey justify-content-start">
               <div className="d-flex align-items-center profile-header">
                   <div className="d-flex flex-column">
+                  {/* assign default avatar if user has not uploaded one */}
                   {avatarUrl==""
                   ?
                   <img src={avatar} className="avatar rounded-circle"></img>

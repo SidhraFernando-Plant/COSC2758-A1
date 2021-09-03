@@ -1,6 +1,6 @@
 import React from 'react'
 import PostPreview from './PostPreview'
-import { createReply, getReplies, getPostById } from '../data/repository';
+import { createReply, getReplies, getPostById } from '../data/postRepository';
 import { useLocation, useParams } from 'react-router-dom';
 import Reply from './Reply';
 import { useState, useEffect } from 'react';

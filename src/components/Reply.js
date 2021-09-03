@@ -1,5 +1,5 @@
 import React from 'react'
-import { getAvatar } from '../data/repository';
+import { getAvatar } from '../data/userRepository';
 import avatar from '../img/avatar.svg';
 
 
