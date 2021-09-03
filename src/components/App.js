@@ -20,7 +20,7 @@ function App() {
   const [email, setEmail] = useState(getEmail());
   const [dateJoined, setDateJoined] = useState(getDateJoined());
 
-  // Params: username (str), email (str), dateJoined (str) | Return: none |
+  // Params: username (str), email (str), dateJoined (str) | Return: none 
   // upon successful authentication of user credentials, log user in by storing their creds in this component's state
   const loginUser = (username, email, dateJoined) => {
     setUsername(username);

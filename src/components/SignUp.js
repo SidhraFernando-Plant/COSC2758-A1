@@ -37,7 +37,9 @@ function SignUp(props) {
 
     // Validate user inputs, and if all inputs are valid save the new user
     function signUp() {
-        if(username!==null&&email!==null&&password!==null&&confirmPassword!==null) {
+        var errorMsg = verifyNewUser();
+        //If no errors are found
+        if(errorMsg===null) {
             var today = new Date();
             today = today.toDateString();
             createUser(username, password, email, today);
@@ -46,30 +48,40 @@ function SignUp(props) {
             return;
         }
         else {
-            setErrorMessage("Empty Fields");
+            setErrorMessage(errorMsg);
             return;
         }
     }
 
+    // Params: none | Return: errorMsg (str)
+    // Validate the input fields and return a relevant error message, or null if no error is found
     function verifyNewUser() {
         var errorMsg = null;
-        if(username!==null&&email!==null&&password!==null&&confirmPassword!==null) {
+        //Check for blank fields
+        if(username===null||email===null||password===null||confirmPassword===null) {
             errorMsg = "Some fields have been left blank, please fill all fields.";
         }
+        //Check for confirmPassword matches password
         else if(password!=confirmPassword) {
             errorMsg = "Passwords must match.";
         }
-        else if(validatePassword(password)) {
-            errorMsg = "Passwords must match.";
+        //Check if password meets required strength
+        else if(validatePassword(password)!==null) {
+            errorMsg = validatePassword(password);
         }
+        //Check that username isn't already taken
         else if(userExists(username)) {
             errorMsg = "Bad luck! That username is taken."
         }
+        return errorMsg;
     }
-
+    // Params: inputPassword | Return: errorMsg (str)
+    // Check password strength and return relevant error message if not strong enough, otherwise return null
     function validatePassword(inputPassword) {
         var errorMsg = null;
-        var regexSpecialChar = /[!"#$%&'()*+,-./:;<=>?@[^_`{|}~]/g;
+        //Regex to check if password contains special characters
+        var regexSpecialChar = /[!#$%&()*?@~]/g;
+        //Regex to check if password contains numbers
         var regexNum = /\d+/g;
         if(inputPassword.length<6) {
             errorMsg = "Password must be at least 6 characters long.";
@@ -78,14 +90,13 @@ function SignUp(props) {
             errorMsg = "Password must contain upper and lower case letters";
         }
         else if(!(regexNum.test(inputPassword))) {
-            alert("no numbers");
             errorMsg = "Password must contain at least one number";
         }
 
         else if(!(regexSpecialChar.test(inputPassword))) {
-            alert("no special char");
-            errorMsg = "Password must contain at least one punctuation/special character";
+            errorMsg = "Password must contain at least one of the following special characters: (!#$%&()*?@~)";
         }
+        return errorMsg;
     }
 
     return (
@@ -114,7 +125,7 @@ function SignUp(props) {
                     <label htmlFor="confirm-password">Password</label>
                     <input type="password" className="form-control" id="confirm-password" placeholder="Confirm password" onChange={e => setConfirmPassword(e.target.value)}></input>
                 </div>
-                <button type="reset" className="btn m-auto white-hover bg-grey dark-button" onClick={signUp}>SIGN UP</button>
+                <button className="btn m-auto white-hover bg-grey dark-button" onClick={signUp}>SIGN UP</button>
             </form>
         </div>
         </div>
