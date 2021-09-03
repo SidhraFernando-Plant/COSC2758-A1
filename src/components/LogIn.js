@@ -1,4 +1,4 @@
-import { setUser, verifyUser, initUsers, getEmailByUsername, getDateByUsername } from "../data/userRepository";
+import { setUser, verifyUser, getEmailByUsername, getDateByUsername } from "../data/userRepository";
 import { useState } from "react";
 
 //props: username (str), history 
@@ -23,7 +23,6 @@ function LogIn(props) {
 
     // authenticate a user's credentials, if successful log in the user
     function logIn() {
-        initUsers();
         if(verifyUser(username, password)) {
             var email = getEmailByUsername(username);
             var date = getDateByUsername(username);

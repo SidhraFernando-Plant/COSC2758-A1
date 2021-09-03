@@ -7,7 +7,7 @@ const POST_ID_KEY = "postId";
 const POSTS_KEY = "posts";
 const DEFAULT_AVATAR_PATH = "../img/avatar.svg";
 
-function initUsers() {
+function initLocalStorage() {
     // Stop if data is already initialised.
     if(localStorage.getItem(USERS_KEY) !== null)
       return;
@@ -15,23 +15,39 @@ function initUsers() {
     // User data is hard-coded, passwords are in plain-text.
     const users = [
       {
-        username: "mbolger",
-        password: "abc123"
+        username: "Alex123",
+        password: "abc123!"
+      }
+    ];
+
+    const posts = [
+      {
+        date: "Fri Sep 03 2021",
+        id: 1,
+        post: "Hey guys!! This is my first post, I am so excited to have joined VibeCheck. With online learning since the start of my degree, I have been finding it quite hard to meet friends :( If you're in the same boat reply with your Instagram username and I'll follow you!",
+        replies: [
+          {
+            replyText: "My instagram is @angus, look forward to meeting you Alex!",
+            user: "Angus S",
+            date: "Fri Sep 03 2021",
+          }
+        ],
+        user: "Alex123"
       },
       {
-        username: "shekhar",
-        password: "def456"
-      },
-      {
-        username: "a",
-        password: "b",
-        email: "sidhrafp@gmail.com",
-        dateJoined: "2022-07-26"
+        date: "Thu Sep 02 2021",
+        id: 1,
+        post: "I can't wait until we get out of lockdown and can go on campus!! Do you guys have any good recommendations for places to eat near uni?? I love bubble tea and pizza",
+        replies: [
+          {}
+        ],
+        user: "Katie_H"
       }
     ];
   
     // Set data into local storage.
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    localStorage.setItem(POSTS_KEY, JSON.stringify(posts));
 }
 
 function verifyUser(username, password) {
@@ -161,7 +177,7 @@ export {
     setUser,
     getUser,
     removeUser,
-    initUsers,
+    initLocalStorage,
     verifyUser,
     createUser,
     getEmail,
