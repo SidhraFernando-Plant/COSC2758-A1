@@ -65,8 +65,8 @@ function App() {
             </Route>
           </Switch>
         </main>
-        {//<Footer /> make it stick to bottom better
-        }
+        <Footer />
+        
       </Router>
     </div>
   );

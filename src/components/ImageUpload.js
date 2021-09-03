@@ -26,7 +26,7 @@ export default function ImageUpload(props) {
     }
     //do not allow files bigger than 1MB
     if(file.size > 1048576){
-        alert("File is too big!");
+        alert("File is too big! Please upload a file that is 2MB or less.");
         return;
     }
 
@@ -55,9 +55,6 @@ export default function ImageUpload(props) {
             <img className="img-preview rounded-circle" src={dataUri} alt="avatar"/>
             }
             <div className="d-flex flex-column justify-content-between ml-3">
-                <div className="alert alert-danger form-width m-auto" role="alert">
-                    error
-                </div>
                 <input type="file" onChange={(event) => onChange(event.target.files[0] || null)} />
                 <button onClick={() => {saveAvatar()}} type="submit" class="btn btn-1">SAVE</button>
             </div>

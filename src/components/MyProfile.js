@@ -1,7 +1,7 @@
 import avatar from '../img/avatar.svg'
 import edit from '../img/edit.svg'
 import trash from '../img/delete.svg'
-import {deleteUser, editUser, setUser, getAvatar, setAvatar} from "../data/userRepository";
+import {deleteUser, editUser, setUser, getAvatar, setAvatar, userExists} from "../data/userRepository";
 import {deletePostsByUser, updatePostsByUser} from "../data/postRepository";
 import React, { useState, useEffect } from 'react';
 import ImageUpload from './ImageUpload';
@@ -37,13 +37,13 @@ function MyProfile(props) {
 
   // delete the current users profile and log them out
   function deleteProfile() {
-    //if(window.confirm('Are you sure you want to delete your account?')) {
-    deleteUser(props.username);
-    deletePostsByUser(props.username);
-    props.logoutUser();
-    //Navigate back to home screen
-    props.history.push("/");
-        //}
+    if(window.confirm('Are you sure you want to delete your account?')) {
+          deleteUser(props.username);
+          deletePostsByUser(props.username);
+          props.logoutUser();
+          //Navigate back to home screen
+          props.history.push("/");
+        }
     }
     
     //change state editing to true and allow user to edit their profile
@@ -53,18 +53,25 @@ function MyProfile(props) {
     
     //change state editing to false and change profile information to read-only
     function cancelEdit() {
-      setEditing(!editing);
+      setEditing(false);
     }
 
     // Params: newUsername (string), newEmail (string)  | Return: none
     // update a user's profile record in local storage with information entered in input fields
     function updateProfile(newUsername, newEmail) {
-      editUser(props.username, newUsername, newEmail);
-      props.loginUser(newUsername, newEmail, props.dateJoined);
-      setUser(newUsername, newEmail, props.dateJoined);
-      updatePostsByUser(props.username, newUsername);
-      //change back to read-only
-      setEditing(!editing);
+      if(userExists(newUsername)) {
+        alert("Bad luck! That username is already taken");
+        setEditing(false);
+
+      }
+      else {
+        editUser(props.username, newUsername, newEmail);
+        props.loginUser(newUsername, newEmail, props.dateJoined);
+        setUser(newUsername, newEmail, props.dateJoined);
+        updatePostsByUser(props.username, newUsername);
+        //change back to read-only
+        setEditing(false);
+      }
     }
     
     return (

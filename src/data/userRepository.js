@@ -94,7 +94,6 @@ function deleteUser(username) {
     const users = JSON.parse(localStorage.getItem(USERS_KEY));
     for(var i=0;i<users.length;i++) {
       if(username===users[i].username) {
-        alert("account found at position" + i)
           users.splice(i, i+1);
           localStorage.setItem(USERS_KEY, JSON.stringify(users));
           return;
@@ -106,7 +105,6 @@ function editUser(oldUsername, newUsername, email) {
   const users = JSON.parse(localStorage.getItem(USERS_KEY));
   for(const user of users) {
     if(oldUsername===user.username) {
-        alert("Account found");
         user.username = newUsername;
         user.email = email;
         localStorage.setItem(USERS_KEY, JSON.stringify(users));
