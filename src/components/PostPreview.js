@@ -50,55 +50,94 @@ export default function PostPreview(props) {
     }
       
     return (
-        <div>
-            <div className="card mb-2">
-                <div className="card-body bg-grey rounded border-0">
-                    <div className="d-flex justify-content-between">
-                    <div class="d-flex">
-                        {/* assign default avatar if user has not uploaded one */}
-                        {avatarUrl==""
-                        ?
-                        <img src={avatar} className="post-avatar border border-light rounded-circle"></img>
-                        :
-                        <img src={avatarUrl} className="post-avatar border border-light rounded-circle"></img>
-                        }
-                        
-                        <div>
-                        <h5 className="card-title text-light gradient-text">{props.post.user}</h5>
-                        <h6 className="card-subtitle mb-2 text-muted">{props.post.date}</h6>
-                        </div>
-                    </div>
-                        <div>
-                            {/* allow editing/deleting if user is author of post*/}
-                            {props.post.user===props.username &&
-                            <span>
-                            <img src={edit} className="profile-actions" onClick={startEditPost} data-toggle="modal" data-target="#exampleModal"></img>  
-                            <img src={trash} className="profile-actions" onClick={startDeletePost}></img>
-                            </span>
-                            }
-                        </div>
-                    </div>
-                    
-                    {/* if user is in editing mode, display post as input field to allow changes */}
-                    {!editing
-                ?
-                <p className="card-text text-light">{props.post.post}</p>
-                :
-                <>
-                <textarea className="form-control mt-3" id="exampleFormControlTextarea1" rows="3" onChange={e => setPostInput(e.target.value)}>{props.post.post}</textarea>                
-                <button type="submit" onClick={cancelEdit} className="mt-3 btn btn-outline-info d-inline text-light">CANCEL</button>
-                <button type="submit" onClick={() => updatePost()} className="mt-3 ml-3 btn btn-1 d-inline">SAVE</button>
-                </>
-              }
-                {/* link to PostInspect and pass the id of this component in the URL */}
-                {showReplies &&
-                    <Link className="bg-secondary rounded p-2 text-light" to={pathName}><u>↪Reply &#40;{props.post.replies.length} replies&#41;</u></Link>
-                }
-                
+      <div>
+        <div className="card mb-2">
+          <div className="card-body bg-grey rounded border-0">
+            <div className="d-flex justify-content-between">
+              <div class="d-flex">
+                {/* assign default avatar if user has not uploaded one */}
+                {avatarUrl == "" ? (
+                  <img
+                    src={avatar}
+                    className="post-avatar border border-light rounded-circle bg-light"
+                  ></img>
+                ) : (
+                  <img
+                    src={avatarUrl}
+                    className="post-avatar border border-light rounded-circle"
+                  ></img>
+                )}
+
+                <div>
+                  <h5 className="card-title text-light gradient-text">
+                    {props.post.user}
+                  </h5>
+                  <h6 className="card-subtitle mb-2 text-muted">
+                    {props.post.date}
+                  </h6>
                 </div>
+              </div>
+              <div>
+                {/* allow editing/deleting if user is author of post*/}
+                {props.post.user === props.username && (
+                  <span>
+                    <img
+                      src={edit}
+                      className="profile-actions"
+                      onClick={startEditPost}
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                    ></img>
+                    <img
+                      src={trash}
+                      className="profile-actions"
+                      onClick={startDeletePost}
+                    ></img>
+                  </span>
+                )}
+              </div>
             </div>
-            
-            
+
+            {/* if user is in editing mode, display post as input field to allow changes */}
+            {!editing ? (
+              <p className="card-text text-light">{props.post.post}</p>
+            ) : (
+              <>
+                <textarea
+                  className="form-control mt-3"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  onChange={(e) => setPostInput(e.target.value)}
+                >
+                  {props.post.post}
+                </textarea>
+                <button
+                  type="submit"
+                  onClick={cancelEdit}
+                  className="mt-3 btn btn-outline-info d-inline text-light"
+                >
+                  CANCEL
+                </button>
+                <button
+                  type="submit"
+                  onClick={() => updatePost()}
+                  className="mt-3 ml-3 btn btn-1 d-inline"
+                >
+                  SAVE
+                </button>
+              </>
+            )}
+            {/* link to PostInspect and pass the id of this component in the URL */}
+            {showReplies && (
+              <Link
+                className="bg-secondary rounded p-2 text-light"
+                to={pathName}
+              >
+                <u>↪Reply &#40;{props.post.replies.length} replies&#41;</u>
+              </Link>
+            )}
+          </div>
         </div>
-    )
+      </div>
+    );
 }

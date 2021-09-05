@@ -7,6 +7,8 @@ const POST_ID_KEY = "postId";
 const POSTS_KEY = "posts";
 const DEFAULT_AVATAR_PATH = "../img/avatar.svg";
 
+// Params: newPost (string), username (string), postDate (string)  | Return: none
+// create a post object with the params and add it to the array of post objects in local storage
 function createPost(newPost, username, postDate) {
     const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
     var newId = parseInt(localStorage.getItem(POST_ID_KEY));
@@ -16,6 +18,8 @@ function createPost(newPost, username, postDate) {
     localStorage.setItem(POST_ID_KEY, newId+1);
   }
   
+  // Params: none | Return: posts (array of post Objects)
+  // get all posts from local storage
   function getPosts() {
     const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
     if(posts.length==0) {
@@ -24,6 +28,8 @@ function createPost(newPost, username, postDate) {
     return posts;
   }
   
+  // Params: user (string) | Return: filteredPosts (array of post Objects)
+  // get all posts by the user with username user
   function getPostsByUser(user) {
     const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
     if(posts.length==0) {
@@ -40,6 +46,8 @@ function createPost(newPost, username, postDate) {
     return filteredPosts;
   }
   
+  // Params: postId (int) | Return: post (Object of type post)
+  // get a post with id postId
   function getPostById(postId) {
     const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
     for(const post of posts) {
@@ -49,6 +57,8 @@ function createPost(newPost, username, postDate) {
     }
   }
   
+  // Params: postId (int) | Return: none
+  // remove the post with id postId from localStorage
   function deletePost(postId) {
     const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
     for(var i=0;i<posts.length;i++) {
@@ -60,12 +70,13 @@ function createPost(newPost, username, postDate) {
     }
   }
   
+  // Params: username (str) | Return: none
+  // remove all posts and replies fromm local storage by user with supplied username
   function deletePostsByUser(username) {
     const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
     var updatedPosts = [];
     for(const post of posts) {
       if(username!==post.user) {
-        //replies could be separate function
         var replies = post.replies;
         var newReplies = [];
         for(const reply of replies) {
@@ -80,6 +91,9 @@ function createPost(newPost, username, postDate) {
     localStorage.setItem(POSTS_KEY, JSON.stringify(updatedPosts));
   }
   
+  // Params: newUsername (str), oldUsername (str) | Return: none
+  // called when a user changes their username
+  // edit all posts and replies by user with oldUsername, update username of each post to newUsername
   function updatePostsByUser(oldUsername, newUsername) {
     const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
     for(const post of posts) {
@@ -96,6 +110,8 @@ function createPost(newPost, username, postDate) {
     localStorage.setItem(POSTS_KEY, JSON.stringify(posts));
   }
   
+  // Params: postId (int), newText (str) | Return: none
+  // update the replyText to newText of the post with the supplied id 
   function editPost(postId, newText) {
       const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
       for(const post of posts) {
@@ -107,6 +123,8 @@ function createPost(newPost, username, postDate) {
       }
   }
   
+  // Params: newReply (str), username (str), replyDate (str), postId (int) | Return: none
+  // add a reply to the post with id postId
   function createReply(newReply, username, replyDate, postId) {
     const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
     var repliedPost;
@@ -121,6 +139,8 @@ function createPost(newPost, username, postDate) {
     }
   }
   
+  // Params: postId (int) | Return: replies (array of reply Objects)
+  // get all replies to the post with id postId
   function getReplies(postId) {
     const posts = JSON.parse(localStorage.getItem(POSTS_KEY));
     var repliedPost;

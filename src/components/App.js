@@ -1,7 +1,6 @@
 import '../App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from './Header'
-import Nav_Bar from './Nav_Bar'
 import Home from './Home'
 import Footer from './Footer'
 import SignUp from './SignUp'
@@ -11,7 +10,7 @@ import Posts from './Posts'
 import PostInspect from './PostInspect'
 import { useState } from 'react';
 import { getEmail, getUser, removeUser, getDateJoined } from "../data/userRepository";
-import ImageUpload from './ImageUpload';
+
 
 // props: none | App component with routing
 function App() {

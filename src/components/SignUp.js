@@ -100,36 +100,64 @@ function SignUp(props) {
     }
 
     return (
-        <div>
-            <h2 className="text-center fw-bolder fs-1">Sign up</h2>
-            {errorMessage!=null &&
-                <div className="alert alert-danger form-width m-auto" role="alert">
-                    {errorMessage}
-                </div>
-            }
+      <div>
+        <h2 className="text-center fw-bolder fs-1">Sign up</h2>
+        {errorMessage != null && (
+          <div className="alert alert-danger form-width m-auto" role="alert">
+            {errorMessage}
+          </div>
+        )}
         <div className="sign-up m-auto rounded-3">
-            <form>
-                <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <input type="text" className="form-control" id="name" placeholder="Enter name" onChange={e => setName(e.target.value)}></input>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" className="form-control" id="email" placeholder="Enter email" onChange={e => setEmail(e.target.value)}></input>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" className="form-control" id="password" placeholder="Password" onChange={e => setPassword(e.target.value)}></input>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="confirm-password">Password</label>
-                    <input type="password" className="form-control" id="confirm-password" placeholder="Confirm password" onChange={e => setConfirmPassword(e.target.value)}></input>
-                </div>
-                <button className="btn m-auto white-hover bg-grey dark-button" onClick={signUp}>SIGN UP</button>
-            </form>
+          <form>
+            <div className="form-group">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                placeholder="Enter name"
+                onChange={(e) => setName(e.target.value)}
+              ></input>
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                placeholder="Enter email"
+                onChange={(e) => setEmail(e.target.value)}
+              ></input>
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              ></input>
+            </div>
+            <div className="form-group">
+              <label htmlFor="confirm-password">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="confirm-password"
+                placeholder="Confirm password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              ></input>
+            </div>
+            <button
+              className="btn m-auto white-hover bg-grey dark-button"
+              onClick={signUp}
+            >
+              SIGN UP
+            </button>
+          </form>
         </div>
-        </div>
-      
+      </div>
     );
   }
   

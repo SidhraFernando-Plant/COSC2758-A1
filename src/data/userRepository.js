@@ -7,6 +7,8 @@ const POST_ID_KEY = "postId";
 const POSTS_KEY = "posts";
 const DEFAULT_AVATAR_PATH = "../img/avatar.svg";
 
+
+  // Initialise local storage to populate application with some posts and users
 function initLocalStorage() {
     // Stop if data is already initialised.
     if(localStorage.getItem(USERS_KEY) !== null)
@@ -15,8 +17,11 @@ function initLocalStorage() {
     // User data is hard-coded, passwords are in plain-text.
     const users = [
       {
+        dateJoined: "Sun Aug 15 2021",
+        email: "alex@gmail.com",
         username: "Alex123",
-        password: "abc123!"
+        password: "abc123!",
+        avatar: ""
       }
     ];
 
@@ -36,20 +41,22 @@ function initLocalStorage() {
       },
       {
         date: "Thu Sep 02 2021",
-        id: 1,
+        id: 2,
         post: "I can't wait until we get out of lockdown and can go on campus!! Do you guys have any good recommendations for places to eat near uni?? I love bubble tea and pizza",
-        replies: [
-          {}
-        ],
+        replies: [],
         user: "Katie_H"
       }
     ];
+    const postId = 3;
   
     // Set data into local storage.
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
     localStorage.setItem(POSTS_KEY, JSON.stringify(posts));
+    localStorage.setItem(POST_ID_KEY, postId);
 }
 
+// Params: username (str), passworrd (str) | Return: boolean
+// check if userrname and password combination match a user stored in local storage
 function verifyUser(username, password) {
     const users = JSON.parse(localStorage.getItem(USERS_KEY));
     for(const user of users) {
@@ -60,25 +67,32 @@ function verifyUser(username, password) {
     return false;
 }
 
+// Params: username (str), email (str), date (str) | Return: none
+// store the current user in localStorage
 function setUser(username, email, date) {
     localStorage.setItem(USER_KEY, username);
     localStorage.setItem(EMAIL_KEY, email);
     localStorage.setItem(DATE_KEY, date);
 }
   
+
+// get the current user's username from local storage
 function getUser() {
     return localStorage.getItem(USER_KEY);
 }
 
+// get the current user's email from local storage
 function getEmail() {
     return localStorage.getItem(EMAIL_KEY);
 }
 
+// get the current user's date joined from local storage
 function getDateJoined() {
   return localStorage.getItem(DATE_KEY);
 }
 
-//CHANGE THIS
+// Params: username (str) | Return: email (str)
+// get the email of user with username supplied
 function getEmailByUsername(username) {
   const users = JSON.parse(localStorage.getItem(USERS_KEY));
   for(const user of users) {
@@ -89,7 +103,8 @@ function getEmailByUsername(username) {
   return null;
 }
 
-//CHANGE THIS
+// Params: username (str) | Return: dateJoined (str)
+// get the join dates of user with username supplied
 function getDateByUsername(username) {
   const users = JSON.parse(localStorage.getItem(USERS_KEY));
   for(const user of users) {
@@ -100,12 +115,16 @@ function getDateByUsername(username) {
   return null;
 }
   
+
+// stop the current user's logged in session by removing them as the current user
 function removeUser() {
     localStorage.removeItem(USER_KEY);
     localStorage.removeItem(EMAIL_KEY);
     localStorage.removeItem(DATE_KEY);
 }
 
+// Params: username (str) | Return: none
+// remove the user with username supplied
 function deleteUser(username) {
     const users = JSON.parse(localStorage.getItem(USERS_KEY));
     for(var i=0;i<users.length;i++) {
@@ -117,6 +136,8 @@ function deleteUser(username) {
     }
 }
 
+// Params: oldUsername (str), newUsername (str), email (str) | Return: none
+// update user's detail to newUsername and email
 function editUser(oldUsername, newUsername, email) {
   const users = JSON.parse(localStorage.getItem(USERS_KEY));
   for(const user of users) {
@@ -128,6 +149,8 @@ function editUser(oldUsername, newUsername, email) {
   }
 }
 
+// Params: newUsername (str), newPassword (str), newEmail (str), date(str) | Return: none
+// Add a new user to the record of users in local storage
 function createUser(newUsername, newPassword, newEmail, date) {
     const users = JSON.parse(localStorage.getItem(USERS_KEY));
     const newUser = {username: newUsername, password: newPassword, email: newEmail, dateJoined: date, avatar: ""};
@@ -135,6 +158,8 @@ function createUser(newUsername, newPassword, newEmail, date) {
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
 
+// Params: username (str), imgBlob (str - base64 blob url) | Return: none
+// Update the blob url to the user with supplied username's avatar
 function setAvatar(username, imgBlob) {
   const users = JSON.parse(localStorage.getItem(USERS_KEY));
   for(const user of users) {
@@ -146,6 +171,8 @@ function setAvatar(username, imgBlob) {
   }
 }
 
+// Params: username (str) | Return: imgBlob (str - base64 blob url)
+// Get a user's avatar
 function getAvatar(username) {
   const users = JSON.parse(localStorage.getItem(USERS_KEY));
   for(const user of users) {
@@ -157,6 +184,8 @@ function getAvatar(username) {
   return "";
 }
 
+// Params: username (str) | Return: boolean
+// Check if a user with the supplied username already exists
 function userExists(username) {
   var returnVal = false;
   const users = JSON.parse(localStorage.getItem(USERS_KEY));
@@ -167,10 +196,6 @@ function userExists(username) {
   }
   return returnVal;
 }
-
-//----------POSTS--------------
-
-//Maybe put this in a separate file
 
 
 export {
@@ -190,5 +215,3 @@ export {
     setAvatar,
     getAvatar,
 }
-
-//[{"username":"mbolger","password":"abc123"},{"username":"shekhar","password":"def456"}]

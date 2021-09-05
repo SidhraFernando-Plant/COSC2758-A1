@@ -40,30 +40,35 @@ export default function PostInspect(props) {
     }
     
     return (
-        <div>
-            <p className="align-body"><a href="/posts" className="text-dark">← Back to forum</a></p>
-            <div className="post m-auto">
-            <div className="mt-3">
-                <PostPreview post={post} showReplies={false}/>
-            </div>
-            
-            </div>
-            <CollapsibleForm heading="Replies" formTitle="+ New reply" txtAreaLabel="Let sidi know what you think..." handleSubmit={makeReply}/>
-                
-                <div className="post m-auto">
-                
-                {replies != null && replies.length!=0
-                    ?
-                    replies.map(function(reply){
-                        return <Reply reply={reply}/>;
-                    })
-                    :
-                    <>
-                    <p>There aren't any replies yet... be the first!</p>
-                    </>
-                }
-                
-                </div>
+      <div>
+        <p className="align-body">
+          <a href="/posts" className="text-dark">
+            ← Back to forum
+          </a>
+        </p>
+        <div className="post m-auto">
+          <div className="mt-3">
+            <PostPreview post={post} showReplies={false} />
+          </div>
         </div>
-    )
+        <CollapsibleForm
+          heading="Replies"
+          formTitle="+ New reply"
+          txtAreaLabel="Share your thoughts..."
+          handleSubmit={makeReply}
+        />
+
+        <div className="post m-auto">
+          {replies != null && replies.length != 0 ? (
+            replies.map(function (reply) {
+              return <Reply reply={reply} />;
+            })
+          ) : (
+            <>
+              <p>There aren't any replies yet... be the first!</p>
+            </>
+          )}
+        </div>
+      </div>
+    );
 }

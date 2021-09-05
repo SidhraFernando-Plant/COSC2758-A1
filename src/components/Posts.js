@@ -24,16 +24,14 @@ function Posts(props) {
       today = today.toDateString();
       createPost(textPost, props.username, today);
       setPosts(getPosts());
-      document.getElementById("new-post-form").reset()
+      document.getElementById("reply-input").value = "";
     }
 
     return (
       <div>
         <CollapsibleForm heading="All posts" formTitle="+ New post" txtAreaLabel="Share your thoughts..." handleSubmit={makePost}/>
-          {allPosts==null
+          {allPosts != null && allPosts.length!=0
           ?
-          <p>No posts have been made yet!!</p>
-          :
           <div className="d-flex">
             <div className="posts m-auto">
               
@@ -41,7 +39,11 @@ function Posts(props) {
                 return <PostPreview post={post} username={props.username} showReplies={true} avatarUrl={getAvatar(props.username)}/>;
               })}
             </div>
-            </div>}
+            </div>
+          :
+          <p>No posts have been made yet.</p>
+          }
+          
           </div>
     );
   }

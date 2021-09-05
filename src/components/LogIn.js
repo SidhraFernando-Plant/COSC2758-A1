@@ -40,31 +40,51 @@ function LogIn(props) {
     }
     
     return (
-        <div>
+      <div>
         <h2 className="text-center">Log in</h2>
-        {errorMessage!=null &&
-
-            <div className="alert alert-danger form-width m-auto animated fadeInanimated fadeIn" role="alert">
-                {errorMessage}
-            </div>
-        }
+        {errorMessage != null && (
+          <div
+            className="alert alert-danger form-width m-auto animated fadeInanimated fadeIn"
+            role="alert"
+          >
+            {errorMessage}
+          </div>
+        )}
 
         <div className="sign-up m-auto rounded-3">
-            
-            <form>
-                <div className="form-group">
-                    <label htmlFor="username">Username</label>
-                    <input type="text" className="form-control" id="username" placeholder="Enter username" onChange={e => setUsernameInput(e.target.value)}></input>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" className="form-control" id="password" placeholder="Password" onChange={e => setPassword(e.target.value)}></input>
-                </div>
-                <button onClick={() => {logIn()}} type="reset" class="btn bg-grey white-hover dark-button">LOG IN</button>
-            </form>
+          <form>
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                className="form-control"
+                id="username"
+                placeholder="Enter username"
+                onChange={(e) => setUsernameInput(e.target.value)}
+              ></input>
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              ></input>
+            </div>
+            <button
+              onClick={() => {
+                logIn();
+              }}
+              type="reset"
+              class="btn bg-grey white-hover dark-button"
+            >
+              LOG IN
+            </button>
+          </form>
         </div>
-        </div>
-      
+      </div>
     );
   }
   
