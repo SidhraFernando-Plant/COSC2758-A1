@@ -34,6 +34,7 @@ function Posts(props) {
       setPosts(getPosts());
     }
 
+    //save edits made to post by saving postText as the new text for the post
     function updatePost(postId, postText) {
       editPost(postId, postText);
       setPosts(getPosts());

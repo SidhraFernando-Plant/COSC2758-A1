@@ -31,7 +31,7 @@ export default function PostPreview(props) {
         
     }
     
-    //save edits made to post by saving postText as the new text for the post
+    //pass updated text to parent to use appropriate function to save
     function updatePost() {
         props.handleUpdate(props.post.id, postText);
         toggleEditing();

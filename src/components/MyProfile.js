@@ -125,7 +125,7 @@ function MyProfile(props) {
             <div className="d-flex flex-column">
               {/* assign default avatar if user has not uploaded one */}
               {avatarUrl == "" ? (
-                <img src={avatar} className="avatar rounded-circle"></img>
+                <img src={avatar} className="avatar rounded-circle bg-light"></img>
               ) : (
                 <img src={avatarUrl} className="avatar rounded-circle"></img>
               )}

@@ -13,8 +13,6 @@ function initLocalStorage() {
     // Stop if data is already initialised.
     if(localStorage.getItem(USERS_KEY) !== null)
       return;
-  
-    // User data is hard-coded, passwords are in plain-text.
     const users = [
       {
         dateJoined: "Sun Aug 15 2021",
@@ -45,9 +43,27 @@ function initLocalStorage() {
         post: "I can't wait until we get out of lockdown and can go on campus!! Do you guys have any good recommendations for places to eat near uni?? I love bubble tea and pizza",
         replies: [],
         user: "Katie_H"
+      },
+      {
+        date: "Tue Aug 31 2021",
+        id: 3,
+        post: "I'm currently taking Further Programming and am having some trouble with an assignment. Would anyone who has taken this course before be able to help me? Thanks.",
+        replies: [
+          {
+            replyText: "Thanks Katie that would be really helpful!! I'm struggling the most with lambda functions.",
+            user: "Angus S",
+            date: "Wed Sep 01 2021",
+          },
+          {
+            replyText: "Hey Angus, I took Further Programming last year! What topic are you having trouble with? I have a lot of great links to online resources that I am happy to share.",
+            user: "Katie_H",
+            date: "Wed Sep 01 2021",
+          }
+        ],
+        user: "Angus S"
       }
     ];
-    const postId = 3;
+    const postId = 4;
   
     // Set data into local storage.
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
