@@ -8,7 +8,8 @@ import CollapsibleForm from "./CollapsibleForm";
 //Show all posts in descending chronological order to user
 function Posts(props) {
     var postText = null;
-    const [allPosts, setPosts] = useState(getPosts());
+    const [posts, setPosts] = useState(getPosts());
+    const [isUserPosts, setIsUserPosts] = useState(false);
 
     //Secured page: only allow access if user is logged in
     useEffect(() => {
@@ -18,7 +19,7 @@ function Posts(props) {
     });
 
     // Params: textPost (string)  | Return: none
-    // make a new post with text textPost, update the state allPosts and clear the input field for making new post
+    // make a new post with text textPost, update the state posts and clear the input field for making new post
     function makePost(textPost) {
       var today = new Date();
       today = today.toDateString();
@@ -38,21 +39,40 @@ function Posts(props) {
       setPosts(getPosts());
     }
 
+    //toggle from viewing all posts to only current user's posts
+    function togglePosts() {
+      //if currently viewing all posts, change state posts to only user's posts
+      if(!isUserPosts) {
+        setPosts(getPostsByUser(props.username));
+      }
+      else {
+        setPosts(getPosts);
+      }
+      //update state to reflect change in posts being viewed
+      setIsUserPosts(!isUserPosts);
+    }
+
     return (
       <div>
-        <CollapsibleForm heading="All posts" formTitle="+ New post" txtAreaLabel="Share your thoughts..." handleSubmit={makePost}/>
-          {allPosts != null && allPosts.length!=0
+        <CollapsibleForm heading="Forum" formTitle="+ New post" txtAreaLabel="Share your thoughts..." handleSubmit={makePost}/>
+        <div className="form-check card-new-post mb-3">
+          <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" onClick={togglePosts}></input>
+          <label className="form-check-label" for="defaultCheck1">
+            Show only my posts
+          </label>
+        </div>
+          {posts != null && posts.length!=0
           ?
           <div className="d-flex">
             <div className="posts m-auto">
               
-              {allPosts.map(function(post){
+              {posts.map(function(post){
                 return <PostPreview post={post} username={props.username} showReplies={true} avatarUrl={getAvatar(props.username)} handleDelete={startDeletePost} handleUpdate={updatePost}/>;
               })}
             </div>
             </div>
           :
-          <p>No posts have been made yet.</p>
+          <p className="posts m-auto">{isUserPosts ? "You haven't made any posts yet." : "No posts have been made yet."}</p>
           }
           
           </div>
