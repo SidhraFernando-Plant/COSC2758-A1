@@ -75,7 +75,7 @@ function MyProfile(props) {
     }
     
     return (
-      <div>
+      <div  className="full-height">
         <div
           class="modal fade"
           id="exampleModal"

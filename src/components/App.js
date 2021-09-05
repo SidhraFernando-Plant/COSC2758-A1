@@ -37,7 +37,7 @@ function App() {
   }
   
   return (
-    <div>
+    <div className="footer-padding">
       <Router>
         <Header username={username} logoutUser={logoutUser}/>
         <main role="main">

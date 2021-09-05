@@ -53,7 +53,7 @@ function Posts(props) {
     }
 
     return (
-      <div>
+      <div  className="full-height">
         <CollapsibleForm heading="Forum" formTitle="+ New post" txtAreaLabel="Share your thoughts..." handleSubmit={makePost}/>
         <div className="form-check card-new-post mb-3">
           <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" onClick={togglePosts}></input>

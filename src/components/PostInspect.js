@@ -40,7 +40,7 @@ export default function PostInspect(props) {
     }
     
     return (
-      <div>
+      <div  className="full-height">
         <p className="align-body">
           <a href="/posts" className="text-dark">
             ← Back to forum

@@ -40,7 +40,7 @@ function LogIn(props) {
     }
     
     return (
-      <div>
+      <div  className="full-height">
         <h2 className="text-center">Log in</h2>
         {errorMessage != null && (
           <div
@@ -72,18 +72,24 @@ function LogIn(props) {
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
+              
             </div>
+            <div className="d-flex">
             <button
               onClick={() => {
                 logIn();
               }}
               type="reset"
-              class="btn bg-grey white-hover dark-button"
+              className="btn bg-grey white-hover dark-button m-auto"
             >
+            
               LOG IN
             </button>
+            </div>
           </form>
+          
         </div>
+        <a href="/signup"><p className="text-center text-dark mt-1">New to VibeCheck? Sign up here</p></a>
       </div>
     );
   }

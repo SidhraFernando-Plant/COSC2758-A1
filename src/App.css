@@ -84,9 +84,21 @@
 }
 
 .footer {
-  /* position: fixed;
-  bottom: 0; */
+  
   width: 100%;
+  position:fixed;
+  left:0;
+  bottom:0;
+  right:0;
+}
+
+.full-height {
+  min-height: calc(100vh - 105px);
+  /* min-height: 100%; */
+}
+
+.footer-padding {
+  padding-bottom: 105px;
 }
 
 .profile-actions {
@@ -236,8 +248,8 @@ a {
   object-fit: cover;
   width: 100px;
   height: 100px;
-  
 }
+
 
 
 /*background: #a8ff78;  /* fallback for old browsers 

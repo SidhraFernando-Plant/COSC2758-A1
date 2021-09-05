@@ -100,7 +100,7 @@ function SignUp(props) {
     }
 
     return (
-      <div>
+      <div  className="full-height">
         <h2 className="text-center fw-bolder fs-1">Sign up</h2>
         {errorMessage != null && (
           <div className="alert alert-danger form-width m-auto" role="alert">
@@ -149,14 +149,17 @@ function SignUp(props) {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               ></input>
             </div>
-            <button
-              className="btn m-auto white-hover bg-grey dark-button"
-              onClick={signUp}
-            >
-              SIGN UP
-            </button>
+            <div className="d-flex">
+              <button
+                className="btn m-auto white-hover bg-grey dark-button"
+                onClick={signUp}
+              >
+                SIGN UP
+              </button>
+            </div>
           </form>
         </div>
+        <a href="/login"><p className="text-center text-dark mt-1">Already have an account? Log in here.</p></a>
       </div>
     );
   }

@@ -6,7 +6,7 @@ import account from '../img/account.svg'
 //Header for all pages, dynamic based on whether user is logged in (navigation options change)
 function Header(props) {
     return (
-      <div className="d-flex justify-content-between align-items-center p-3 bg-grey">
+      <div className="d-flex justify-content-between align-items-center p-3 bg-grey header">
           <a className="ml-3 text-decoration-none" href="/">
             <div className="d-flex">
               <img src={logo} className="logo-img"></img>
