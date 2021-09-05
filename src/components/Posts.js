@@ -1,5 +1,5 @@
 import {getAvatar} from "../data/userRepository"
-import {createPost, getPosts, getPostsByUser} from "../data/postRepository"
+import {createPost, getPosts, getPostsByUser, deletePost, editPost} from "../data/postRepository"
 import PostPreview from './PostPreview'
 import { useState, useEffect } from "react";
 import CollapsibleForm from "./CollapsibleForm";
@@ -27,6 +27,17 @@ function Posts(props) {
       document.getElementById("reply-input").value = "";
     }
 
+    // delete the post with repository method
+    function startDeletePost(postId) {
+      deletePost(postId);
+      setPosts(getPosts());
+    }
+
+    function updatePost(postId, postText) {
+      editPost(postId, postText);
+      setPosts(getPosts());
+    }
+
     return (
       <div>
         <CollapsibleForm heading="All posts" formTitle="+ New post" txtAreaLabel="Share your thoughts..." handleSubmit={makePost}/>
@@ -36,7 +47,7 @@ function Posts(props) {
             <div className="posts m-auto">
               
               {allPosts.map(function(post){
-                return <PostPreview post={post} username={props.username} showReplies={true} avatarUrl={getAvatar(props.username)}/>;
+                return <PostPreview post={post} username={props.username} showReplies={true} avatarUrl={getAvatar(props.username)} handleDelete={startDeletePost} handleUpdate={updatePost}/>;
               })}
             </div>
             </div>

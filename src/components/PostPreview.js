@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import avatar from '../img/avatar.svg'
 
-//props: post (Object of type: post), showReplies (boolean), username (str)
+//props: post (Object of type: post), showReplies (boolean), username (str), handleUpdate (function), handleDelete(function)
 //Display a post including user who made it, date posted, post text, replies (toggle with showReplies), and ability to edit/delete if user viewing is author
 export default function PostPreview(props) {
     const { id } = useParams();
@@ -27,26 +27,21 @@ export default function PostPreview(props) {
 
     // delete the post with repository method
     function startDeletePost() {
-        deletePost(props.post.id);
-        window.location.reload();
-    }
-    
-    //set editing to true to make post text editable, and remove link to replies while editing
-    function startEditPost() {
-        setEditing(!editing);
-        setShowReplies(!showReplies);
+        props.handleDelete(props.post.id);
+        
     }
     
     //save edits made to post by saving postText as the new text for the post
     function updatePost() {
-        editPost(props.post.id, postText);
-        window.location.reload();
+        props.handleUpdate(props.post.id, postText);
+        toggleEditing();
     }
     
-    //change state editing to false and change post to read-only
-    function cancelEdit() {
-      setEditing(!editing);
-      setShowReplies(!showReplies);
+    // if not in editing mode, set editing to true to make post text editable, and remove link to replies while editing
+    // if in editing mode, change state editing to false and change post to read-only
+    function toggleEditing() {
+        setEditing(!editing);
+        setShowReplies(!showReplies);
     }
       
     return (
@@ -84,7 +79,7 @@ export default function PostPreview(props) {
                     <img
                       src={edit}
                       className="profile-actions"
-                      onClick={startEditPost}
+                      onClick={toggleEditing}
                       data-toggle="modal"
                       data-target="#exampleModal"
                     ></img>
@@ -113,7 +108,7 @@ export default function PostPreview(props) {
                 </textarea>
                 <button
                   type="submit"
-                  onClick={cancelEdit}
+                  onClick={toggleEditing}
                   className="mt-3 btn btn-outline-info d-inline text-light"
                 >
                   CANCEL
