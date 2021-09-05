@@ -36,97 +36,14 @@
     transform: rotate(360deg);
   }
 }
-
-.logo {
-  font-size: 1.8em;
-  color: black;
-  text-decoration: none !important
-}
-
-.logo-img {
-  width: 50px;
-}
-
-.logo:hover {
-  text-decoration: none;
-}
-
-.sign-up {
-  width: 30%;
-  padding: 30px;
-  background: linear-gradient(to right, #78ffd6, #a8ff78);
-
-}
-
-.carousel {
-  width: 50%;
-  padding: 50px;
-}
-.features {
-  padding: 50px 0px 50px 50px;
-  font-size: 1.5em;
-}
-
-.features img {
-  width: 8%;
-  margin-right: 15px;
-}
-
-.profile-details {
-  width: 334px;
-  padding: 0px 0px 20px 0px;
-  margin: auto;
-}
-
+/* UNIVERSAL STYLES */
 .avatar {
   width: 80px;
   height: 80px;
 }
 
-.footer {
-  
-  width: 100%;
-  position:fixed;
-  left:0;
-  bottom:0;
-  right:0;
-}
-
-.full-height {
-  min-height: calc(100vh - 105px);
-  /* min-height: 100%; */
-}
-
-.footer-padding {
-  padding-bottom: 105px;
-}
-
-.profile-actions {
-  width: 35px;
-}
-
-.post-button {
-  width: 94px;
-}
-
-
-.card-new-post {
-  width: 70%;
-  margin-left: 15%;
-}
-
-.bold {
-  font-weight: bold;
-}
-
 .posts{
   width: 70%;
-}
-
-.post-avatar {
-  width: 60px;
-  height: 60px;
-  margin-right: 10px;
 }
 
 .bg-grey {
@@ -142,19 +59,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-
-.jumbotron {
-  background: linear-gradient(to right, #78ffd6, #a8ff78);
-  padding: 0px;
-
-}
-
-.jumbotron div {
-  margin-left: 2%;
-  padding: 63px 0px 64px 32px;
-}
-
 
 .btn {
   text-align: center;
@@ -176,10 +80,6 @@
   background-image: linear-gradient(to right, #78ffd6, #a8ff78);
 }
 
-.stars {
-  height: 355px;
-}
-
 .bold {
   font-weight: 400;
 }
@@ -196,31 +96,9 @@ h2 {
   font-weight: bold;
 }
 
-.profile-title {
-  margin: 20px 0px 10px 0px;
-}
-
-.profile-header {
-  background: linear-gradient(to right, #78ffd6, #a8ff78);
-  padding: 20px 20px 20px 20px;
-}
-
 a {
   color: #eaeaea;
 }
-
-.profile-info {
-  margin: 15px 0px 0px 20px
-}
-
-.posts-heading {
-  width: 70%;
-}
-
-.posts-heading button {
-  height: 30%;
-}
-
 .post {
   width: 70%;
 }
@@ -234,14 +112,107 @@ a {
   margin-bottom: 0px;
   margin-top: 10px;
 }
+.collapsible-form {
+  margin-bottom: 15px !important;
+}
+
+/* HEADER */
+.logo {
+  font-size: 1.8em;
+  color: black;
+  text-decoration: none !important
+}
+
+.logo-img {
+  width: 50px;
+}
+
+.logo:hover {
+  text-decoration: none;
+}
+
+/* FOOTER */
+.footer {
+  width: 100%;
+  position:fixed;
+  left:0;
+  bottom:0;
+  right:0;
+}
+
+.full-height {
+  min-height: calc(100vh - 105px);
+  /* min-height: 100%; */
+}
+
+.footer-padding {
+  padding-bottom: 105px;
+}
+
+/* HOMEPAGE */
+.carousel {
+  width: 50%;
+  padding: 50px;
+}
+.features {
+  padding: 50px 0px 50px 50px;
+  font-size: 1.5em;
+}
+
+.features img {
+  width: 8%;
+  margin-right: 15px;
+}
+
+.jumbotron {
+  background: linear-gradient(to right, #78ffd6, #a8ff78);
+  padding: 0px;
+
+}
+
+.jumbotron div {
+  margin-left: 2%;
+  padding: 63px 0px 64px 32px;
+}
+
+.stars {
+  height: 355px;
+}
+
+/* LOG IN/SIGN UP */
+.sign-up {
+  width: 30%;
+  padding: 30px;
+  background: linear-gradient(to right, #78ffd6, #a8ff78);
+}
 
 .form-width {
   width: 30%;
   margin-bottom: 10px!important;
 }
 
-.collapsible-form {
-  margin-bottom: 15px !important;
+/* PROFILE PAGE */
+.profile-details {
+  width: 334px;
+  padding: 0px 0px 20px 0px;
+  margin: auto;
+}
+
+.profile-actions {
+  width: 35px;
+}
+
+.profile-title {
+  margin: 20px 0px 10px 0px;
+}
+
+.profile-header {
+  background: linear-gradient(to right, #78ffd6, #a8ff78);
+  padding: 20px 20px 20px 20px;
+}
+
+.profile-info {
+  margin: 15px 0px 0px 20px
 }
 
 .img-preview {
@@ -250,8 +221,26 @@ a {
   height: 100px;
 }
 
+/* POSTS AND REPLIES */
+.post-button {
+  width: 94px;
+}
 
+.card-new-post {
+  width: 70%;
+  margin-left: 15%;
+}
 
-/*background: #a8ff78;  /* fallback for old browsers 
-background: -webkit-linear-gradient(to right, #78ffd6, #a8ff78);   Chrome 10-25, Safari 5.1-6
-background: linear-gradient(to right, #78ffd6, #a8ff78); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.post-avatar {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+
+.posts-heading {
+  width: 70%;
+}
+
+.posts-heading button {
+  height: 30%;
+}
